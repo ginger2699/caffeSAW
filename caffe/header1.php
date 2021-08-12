@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<div id="login_bar" style="text-align: right">                                               
+            <ul id="login_signup">
+                <li><a href="login.php" id="login_link">Login </a></li>
+                <!-- <li><a href="#" id="sign_link">SignUp </a></li> -->
+            </ul>
+</div>
 <h1 class="site-heading text-center text-white d-none d-lg-block">
     <span class="site-heading-upper text-primary mb-3">PURRfect Coffee</span>
     <span class="site-heading-lower">Our cat café in the middle of the city</span>
@@ -20,6 +26,7 @@
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Menu</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="products.php">Products</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>
             </ul>
         </div>
     </div>

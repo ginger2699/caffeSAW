@@ -18,6 +18,8 @@
     <body>
        <?php
        require 'header1.php';
+
+       
        ?>
 
         <section class="page-section cta">
@@ -28,19 +30,25 @@
                             <h2 class="section-heading mb-4">
                                 <span class="section-heading-upper">Register Now!</span>
                                 <span class="section-heading-lower">Met our beatiful cats</span>
-                            </h2>
-                            <form>
+                            </h2>        
+                            <form action="utils/registration.php" method="post">
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                 </div>
-                                <input name="" class="form-control" placeholder="Full name" type="text">
+                                <input name="firstname" class="form-control" placeholder="First name" type="text">
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="lastname" class="form-control" placeholder="Last name" type="text">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                                 </div>
-                                <input name="" class="form-control" placeholder="Email address" type="email">
+                                <input name="email" class="form-control" placeholder="Email address" type="email">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -52,24 +60,24 @@
                                     <option value="2">+35</option>
                                     <option value="3">+73</option>
                                 </select>
-                                <input name="" class="form-control" placeholder="Phone number" type="text">
+                                <input name="phonenumber" class="form-control" placeholder="Phone number" type="text">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
-                                <input class="form-control" placeholder="Create password" type="password">
+                                <input name="pass" class="form-control" placeholder="Create password" type="password">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
-                                <input class="form-control" placeholder="Repeat password" type="password">
+                                <input name="confirm" class="form-control" placeholder="Repeat password" type="password">
                             </div> <!-- form-group// -->                                      
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                                <input type="submit" name="submit" class="btn btn-primary btn-block" value="Create Account">
                             </div> <!-- form-group// -->      
-                            <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+                            <p class="text-center">Already have an account? <a href="login.php">Log In</a> </p>                                                                 
                         </form>
                             <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
                         </div>

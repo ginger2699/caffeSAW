@@ -39,18 +39,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
-                                <input class="form-control" placeholder="Create password" type="password">
-                            </div> <!-- form-group// -->
-                            <div class="form-group input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                                </div>
-                                <input class="form-control" placeholder="Repeat password" type="password">
-                            </div> <!-- form-group// -->                                      
+                                <input class="form-control" placeholder="Insert password" type="password">
+                            </div> <!-- form-group// -->                                    
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                                <button type="submit" class="btn btn-primary btn-block"> Log In </button> <!--da collegare poi alla pagina dell'utente -->
                             </div> <!-- form-group// -->      
-                            <p class="text-center">Have an account? <a href="login.php">Log In</a> </p>                                                                 
+                            <p class="text-center">New to the website? <a href="registration.php">Sign In</a> </p>                                                                 
                         </form>
                             <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
                         </div>
