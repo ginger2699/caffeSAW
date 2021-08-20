@@ -28,21 +28,56 @@
                             <h2 class="section-heading mb-4">
                                 <span class="section-heading-lower">LOGIN</span>
                             </h2>
-                            <form>
+                            <?php
+      
+                            if(isset($_GET['error'])){
+                                if($_GET['error']=='emptyFields'){
+                                    echo'<div class="alert alert-danger" role="alert">
+                                            Please fill in all fields?
+                                        </div>';
+                                }
+                                if($_GET['error']=='unexpectedError'){
+                                    echo'<div class="alert alert-danger" role="alert">
+                                            An unexpected error occured, please try again.
+                                        </div>';
+                                }
+                            }
+                            if(isset($_GET['success'])){
+                                if($_GET['success']=='yes'){
+                                    echo'<div class="alert alert-success" role="alert">
+                                            Registration complete, please log in.
+                                        </div>';
+                                }
+                                if($_GET['success']=='loggedIn'){
+                                if(isset($_SESSION['userId'])){ 
+                                    $id = $_SESSION['userId'];
+
+                                        echo'<div class="alert alert-success" role="alert">
+                                            You\'re logged in set!'.strval($id).'
+                                        </div>';
+                                }else{
+                                        echo'<div class="alert alert-success" role="alert">
+                                            You\'re logged in!
+                                        </div>';
+                                    }
+                                    
+                                }
+                            }?> 
+                            <form action="utils/login.php" method="post">
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                                 </div>
-                                <input name="" class="form-control" placeholder="Email address" type="email">
+                                <input name="email" class="form-control" placeholder="Email address" type="email">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
-                                <input class="form-control" placeholder="Insert password" type="password">
+                                <input name="pass" class="form-control" placeholder="Insert password" type="password">
                             </div> <!-- form-group// -->                                    
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"> Log In </button> <!--da collegare poi alla pagina dell'utente -->
+                                <input name= "submit" type="submit" class="btn btn-primary btn-block" value="Log In"> <!--da collegare poi alla pagina dell'utente -->
                             </div> <!-- form-group// -->      
                             <p class="text-center">New to the website? <a href="registration.php">Sign In</a> </p>                                                                 
                         </form>

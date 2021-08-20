@@ -18,8 +18,6 @@
     <body>
        <?php
        require 'header1.php';
-
-       
        ?>
 
         <section class="page-section cta">
@@ -30,25 +28,43 @@
                             <h2 class="section-heading mb-4">
                                 <span class="section-heading-upper">Register Now!</span>
                                 <span class="section-heading-lower">Met our beatiful cats</span>
-                            </h2>        
+                            </h2>
+                            <?php      
+                            if(isset($_GET['error'])){
+                                if($_GET['error']=='emptyFields'){
+                                    echo'<div class="alert alert-danger" role="alert">
+                                            Please fill in all fields stupid whore
+                                        </div>';
+                                }
+                                if($_GET['error']=='invalidPassword'){
+                                    echo'<div class="alert alert-danger" role="alert">
+                                            The two passwords do not match
+                                        </div>';
+                                }
+                                if($_GET['error']=='unexpectedError'){
+                                    echo'<div class="alert alert-danger" role="alert">
+                                            An unexpected error occured, please try again.
+                                        </div>';
+                                }
+                            }?>  
                             <form action="utils/registration.php" method="post">
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                 </div>
-                                <input name="firstname" class="form-control" placeholder="First name" type="text">
+                                <input required name="firstname" class="form-control" placeholder="First name" type="text">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                 </div>
-                                <input name="lastname" class="form-control" placeholder="Last name" type="text">
+                                <input required name="lastname" class="form-control" placeholder="Last name" type="text">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                                 </div>
-                                <input name="email" class="form-control" placeholder="Email address" type="email">
+                                <input required name="email" class="form-control" placeholder="Email address" type="email">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -66,13 +82,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
-                                <input name="pass" class="form-control" placeholder="Create password" type="password">
+                                <input required name="pass" class="form-control" placeholder="Create password" type="password">
                             </div> <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
-                                <input name="confirm" class="form-control" placeholder="Repeat password" type="password">
+                                <input required name="confirm" class="form-control" placeholder="Repeat password" type="password">
                             </div> <!-- form-group// -->                                      
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-primary btn-block" value="Create Account">

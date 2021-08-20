@@ -26,7 +26,23 @@
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Menu</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="products.php">Products</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>
+                <?php
+                session_start();
+                if(isset($_SESSION['userId'])){
+                    echo'<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="show_profile.php">Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="utils/logout.php">Logout</a>
+                    </div>
+                  </li>';
+                }
+                else{
+                    echo'<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>';
+                }
+                ?>
             </ul>
         </div>
     </div>

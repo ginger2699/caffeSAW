@@ -10268,6 +10268,7 @@ p {
   border: 5px solid rgba(255, 255, 255, 0.2);
 }
 
+
 .menu .menu-content {
   margin-left: 85px;
   overflow: hidden;
@@ -10358,4 +10359,13 @@ p {
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08;
+}
+
+/* Profile Section */
+.resize{
+  width: 100px; 
+  height: auto;
+  border-radius: 50%;
+  float: inline-end;
+  border: 5px solid rgba(255, 255, 255, 0.2);
 }

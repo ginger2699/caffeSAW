@@ -1,11 +1,10 @@
 <?php
+session_start();
 try{
 /*same error for all empty fields*/
 if(!isset($_POST['firstname'])||!strlen($_POST['firstname'])||
     !isset($_POST['lastname'])||!strlen($_POST['lastname'])||
-    !isset($_POST['email'])||!strlen($_POST['email'])||
-    !isset($_POST['pass'])||!strlen($_POST['pass'])||
-    !isset($_POST['confirm'])||!strlen($_POST['confirm'])){
+    !isset($_POST['email'])||!strlen($_POST['email'])){
 
     throw new Exception('emptyFields');
 }
@@ -17,9 +16,6 @@ if(!isset($_POST['submit'])||!strlen($_POST['submit'])){
 if(!isset($_POST['phonenumber'])){
     $_POST['phonenumber']='';
 }
-if ($_POST['pass'] != $_POST['confirm']) {
-    throw new Exception('invalidPassword');
-  }
 require 'connect_db.php';
 
 // Create a prepared statement
@@ -28,19 +24,17 @@ if(!$stmt){
     throw new Exception();
 }
 
-if(!($stmt -> prepare("INSERT INTO usersInfo VALUES (DEFAULT,?,?,?,?,?)"))){
+if(!($stmt -> prepare("UPDATE usersInfo SET name = ?, surname = ?, email = ?, phonenumber = ? WHERE id = ?"))){
+    throw new Exception('prepare');
+}
+
+// Bind parameters
+if(!($stmt -> bind_param("sssss", $_POST['firstname'],$_POST['lastname'],$_POST['email'],$_POST['phonenumber'],$_SESSION['userId']))){
     throw new Exception();
 }
 
-//hash password
-$hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
-  // Bind parameters
-if(!($stmt -> bind_param("sssss", $_POST['firstname'],$_POST['lastname'],$_POST['email'],$_POST['phonenumber'],$hash))){
-    throw new Exception();
-}
-
-  // Execute query
+ // Execute query
 if(!($stmt -> execute())){
     throw new Exception();
 }
@@ -54,25 +48,29 @@ if(!($connection -> close())){
     throw new Exception();
 }
 
-header("Location: ../login.php?success=yes");
+header("Location: ../show_profile.php?success=yes");
 exit();
 
 }
 catch (Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../registration.php?error=emptyFields");
+        header("Location: ../update_profile.php?error=emptyFields");
         exit();
     }
     if ($e->getMessage()==='invalidSubmit') {
-        header("Location: ../registration.php?error=invalidSubmit");
+        header("Location: ../update_profile.php?error=invalidSubmit");
         exit();
     }
-    if ($e->getMessage()==='invalidPassword') {
-        header("Location: ../registration.php?error=invalidPassword");
+    if ($e->getMessage()==='prepare') {
+        header("Location: ../update_profile.php?error=prepare");
+        exit();
+    }
+    if ($e->getMessage()==='invalidCredentials') {
+        header("Location: ../update_profile.php?error=invalidCredentials");
         exit();
     }
     else {
-        header("Location: ../registration.php?error=unexpectedError");
+        header("Location: ../update_profile.php?error=unexpectedError");
         exit();
     }
 }
