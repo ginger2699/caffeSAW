@@ -23,17 +23,17 @@
                     </a>
                 </li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="about.php">About</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Menu</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="products.php">Products</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="menu.php">Menu</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="#">Store</a></li>
                 <?php
                 session_start();
                 if(isset($_SESSION['userId'])){
                     echo'<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                    PROFILE
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="show_profile.php">Profile</a>
+                      <a class="dropdown-item" href="show_profile.php">View Profile</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="utils/logout.php">Logout</a>
                     </div>
@@ -43,6 +43,10 @@
                     echo'<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>';
                 }
                 ?>
+                <form class="form-inline my-2 ml-4 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </ul>
         </div>
     </div>

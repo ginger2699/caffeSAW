@@ -29,7 +29,7 @@
                             <span class="section-heading-lower">Keep your hands warm with our coffee and your hearts full with our kittens!</span>
                         </h2>
                         <p class="mb-3">Every cup of our quality artisan coffee starts with locally sourced, hand picked ingredients. Once you try it, our coffee will be a blissful addition to your everyday morning routine - we guarantee it!</p>
-                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="products.php">Discover our menu!</a></div>
+                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="menu.php">Discover our menu!</a></div>
                     </div>
                 </div>
             </div>
