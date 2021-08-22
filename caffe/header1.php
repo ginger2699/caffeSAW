@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="about.php">About</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="menu.php">Menu</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="#">Store</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>
                 <?php
                 session_start();
                 if(isset($_SESSION['userId'])){
