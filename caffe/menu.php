@@ -83,9 +83,26 @@
             <div class="col-lg-12 d-flex justify-content-center">
               <ul id="menu-flters">
                 <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-starters">Starters</li>
-                <li data-filter=".filter-salads">Salads</li>
-                <li data-filter=".filter-specialty">Specialty</li>
+                <?php
+                  require 'utils/connect_db.php';
+                  $sql = "SELECT filterName FROM menufilter";
+                  $result = $connection->query($sql);
+                  
+                  if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()){
+                      echo'
+                      <li data-filter=".filter-'.$row["filterName"].'">'.$row["filterName"].'</li>
+                      ';
+                    }
+              
+    
+                  } 
+                  else {
+                      header("Location: ../index.php");
+                      exit();
+                  }
+    
+                ?>
               </ul>
             </div>
           </div>
@@ -121,14 +138,6 @@
               </div>
             </div>
             <?php
-              if(isset($_GET['success'])){
-                  if($_GET['success']=='yes'){
-                      echo'<div class="alert alert-success" role="alert">
-                              Update complete.
-                          </div>';
-                  }
-              }
-              require 'utils/connect_db.php';
               $sql = "SELECT dish, ingredients, price, filter FROM menuItems";
               $result = $connection->query($sql);
               
