@@ -24,56 +24,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menuitems`
+-- Table structure for table `menufilter`
 --
 
-CREATE TABLE `menuitems` (
+CREATE TABLE `menufilter` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `dish` varchar(50) DEFAULT NULL,
-  `ingredients` varchar(200) DEFAULT NULL,
-  `price` decimal(4,2) DEFAULT NULL,
-  `filter` varchar(20) DEFAULT NULL
+  `filterName` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `menuitems`
+-- Dumping data for table `menufilter`
 --
 
-INSERT INTO `menuitems` (`id`, `dish`, `ingredients`, `price`, `filter`) VALUES
-(1, 'Mozzarella Stick', 'Breadcrumbs, mozzarella, olive oil', '4.95', 'Starters'),
-(2, 'Greek Salad', 'Fresh spinach, crisp romaine, tomatoes, and Greek olives', '9.95', 'Salads');
+INSERT INTO `menufilter` (`id`, `filterName`) VALUES
+(1, 'Salads'),
+(2, 'Specialty'),
+(3, 'Starters');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `menuitems`
+-- Indexes for table `menufilter`
 --
-ALTER TABLE `menuitems`
+ALTER TABLE `menufilter`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `menuitems_ibfk_1` (`filter`);
+  ADD UNIQUE KEY `filterName` (`filterName`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `menuitems`
+-- AUTO_INCREMENT for table `menufilter`
 --
-ALTER TABLE `menuitems`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `menuitems`
---
-ALTER TABLE `menuitems`
-  ADD CONSTRAINT `menuitems_ibfk_1` FOREIGN KEY (`filter`) REFERENCES `menufilter` (`filterName`) ON UPDATE CASCADE;
+ALTER TABLE `menufilter`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
