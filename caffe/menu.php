@@ -31,7 +31,7 @@
   <body>
     <?php
        require 'header1.php';
-       ?>
+    ?>
     <!--NOT in use
         <section class="page-section">
             <div class="container">
@@ -72,7 +72,6 @@
         -->
     <section class="page-section">
     <!-- ======= Menu Section ======= -->
-    
       <section id="menu" class="menu section-bg">
         <div class="container" data-aos="fade-up">
           <div class="section-title">
@@ -121,8 +120,44 @@
                 <label for="star1" title="text">1 star</label>
               </div>
             </div>
+            <?php
+              if(isset($_GET['success'])){
+                  if($_GET['success']=='yes'){
+                      echo'<div class="alert alert-success" role="alert">
+                              Update complete.
+                          </div>';
+                  }
+              }
+              require 'utils/connect_db.php';
+              $sql = "SELECT dish, ingredients, price, filter FROM menuItems";
+              $result = $connection->query($sql);
+              
+              if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()){
+                  echo'
+                  <div class="col-lg-6 menu-item filter-'.$row["filter"].'">
+                    <img
+                      src="assets/img/menu/bread-barrel.jpg"
+                      class="menu-img"
+                      alt=""
+                    />
+                    <div class="menu-content"><a>'.$row["dish"].'</a> <span>$'.$row["price"].'</span></div>
+                    <div class="menu-ingredients">'.$row["ingredients"].'</div>
+                  </div>
+                  ';
+                }
+          
+              $connection->close();
 
-            <div class="col-lg-6 menu-item filter-specialty">
+              } 
+              else {
+                  $connection->close();
+                  header("Location: ../index.php");
+                  exit();
+              }
+
+            ?>
+            <!--<div class="col-lg-6 menu-item filter-specialty">
               <img
                 src="assets/img/menu/bread-barrel.jpg"
                 class="menu-img"
@@ -232,6 +267,7 @@
           </div>
         </div>
       </section>
+      -->
       <!-- End Menu Section -->
     </section>
 
