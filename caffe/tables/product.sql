@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2021 at 12:40 PM
+-- Generation Time: Aug 22, 2021 at 12:49 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.5
 
@@ -31,6 +31,7 @@ CREATE TABLE `product` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(100) NOT NULL,
+  `price` float(10,2) NOT NULL,
   `category` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -38,11 +39,11 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `description`, `category`) VALUES
-(1, 'Black Meowglietta', 'A 100% organic cotton T-Shirt for black cats and puns lovers', 1),
-(2, 'White Cat T-Shirt', 'A 100% organic cotton T-Shirt for all cat people', 1),
-(3, 'Coffurr Pin', 'We usually don\'t want fur in our coffee, this pin is an exception', 2),
-(4, 'Cat Paw Mug', 'You can exclusively drink milk out of this', 3);
+INSERT INTO `product` (`id`, `name`, `description`, `price`, `category`) VALUES
+(1, 'Black Meowglietta', 'A 100% organic cotton T-Shirt for black cats and puns lovers', 25.00, 1),
+(2, 'White Cat T-Shirt', 'A 100% organic cotton T-Shirt for all cat people', 25.00, 1),
+(3, 'Coffurr Pin', 'We usually do not want fur in our coffee, this pin is an exception', 4.20, 2),
+(4, 'Cat Paw Mug', 'You can exclusively drink milk out of this', 14.90, 3);
 
 --
 -- Indexes for dumped tables
