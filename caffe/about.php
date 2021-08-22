@@ -17,6 +17,7 @@
     </head>
     <body>
         <?php
+        $page = 'about';
        require 'header1.php';
        ?>
         <section class="page-section about-heading">

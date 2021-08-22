@@ -15,16 +15,36 @@
         <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="index.php">PURRfect Coffee</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item active px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="index.php">
-                        Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="about.php">About</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="menu.php">Menu</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>
+            <ul id="navbar-nav" class="navbar-nav mx-auto">
+                <?php        
+                    if(isset($page)){                
+                        if($page==='home') {
+                            echo '<li class="nav-item active px-lg-4"><a class="nav-link text-uppercase text-expanded" href="index.php">Home<span class="sr-only">(current)</span></a></li>';
+                        } else {
+                            echo '<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="index.php">Home</a></li>';
+                        }
+                        if($page==='about') {
+                            echo '<li class="nav-item active px-lg-4"><a class="nav-link text-uppercase text-expanded" href="about.php">About</a></li>';
+                        } else {
+                            echo '<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="about.php">About</a></li>';
+                        }
+                        if($page==='menu') {
+                            echo '<li class="nav-item active px-lg-4"><a class="nav-link text-uppercase text-expanded" href="menu.php">Menu</a></li>';
+                        } else {
+                            echo '<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="menu.php">Menu</a></li>';
+                        }
+                        if($page==='store') {
+                            echo '<li class="nav-item active px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>';
+                        } else {
+                            echo '<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>';
+                        }
+                    } else {
+                        echo '<li class="nav-item active px-lg-4"><a class="nav-link text-uppercase text-expanded" href="index.php">Home</a></li>';
+                        echo '<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="about.php">About</a></li>';
+                        echo '<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="menu.php">Menu</a></li>';
+                        echo '<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="store.php">Store</a></li>';
+                    }
+                ?>
                 <?php
                 session_start();
                 if(isset($_SESSION['userId'])){
@@ -40,7 +60,15 @@
                   </li>';
                 }
                 else{
-                    echo'<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>';
+                    if(isset($page)){ 
+                        if($page==='login') {
+                            echo'<li class="nav-item active px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>';
+                        } else {
+                            echo'<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>';
+                        }
+                    } else {
+                        echo'<li class="nav-item px-lg-4"><a class="nav-link text-uppercase text-expanded" href="login.php">Login</a></li>';
+                    }
                 }
                 ?>
                 <form class="form-inline my-2 ml-4 my-lg-0">
