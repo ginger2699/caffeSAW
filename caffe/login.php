@@ -17,6 +17,7 @@
     </head>
     <body>
        <?php
+       $page = 'login';
        require 'header1.php';
        ?>
 

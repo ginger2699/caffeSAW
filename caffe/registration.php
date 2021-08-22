@@ -17,6 +17,7 @@
     </head>
     <body>
        <?php
+       $page = 'login';
        require 'header1.php';
        ?>
 
@@ -27,7 +28,7 @@
                         <div class="cta-inner text-center rounded">
                             <h2 class="section-heading mb-4">
                                 <span class="section-heading-upper">Register Now!</span>
-                                <span class="section-heading-lower">Met our beatiful cats</span>
+                                <span class="section-heading-lower">Meet our beatiful cats</span>
                             </h2>
                             <?php      
                             if(isset($_GET['error'])){

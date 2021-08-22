@@ -30,6 +30,7 @@
   </head>
   <body>
     <?php
+       $page = 'menu';
        require 'header1.php';
     ?>
     <!--NOT in use

@@ -30,6 +30,7 @@
   </head>
   <body>
     <?php
+       $page = 'store';
        require 'header1.php';
        ?>
 
