@@ -10400,25 +10400,31 @@ p {
   margin-top: 50px;
 }
 
+.store .store-img-container {
+  display: flex;
+  justify-content: center;
+}
+
 .store .store-img {
-  width: 70px;
-  border-radius: 50%;
-  float: left;
-  border: 5px solid rgba(255, 255, 255, 0.2);
+  max-width: 100%;
+  border-radius: 20px 20px 0px 0px;
 }
 
 
 .store .store-content {
-  margin-left: 85px;
+  margin: 10px 10px;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
   position: relative;
 }
 
-/* .store .store-card {
+.store .store-card {
   background: #1a1814;
-} */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
 .store .store-content::after {
   content: "......................................................................"

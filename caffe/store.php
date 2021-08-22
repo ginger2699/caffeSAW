@@ -36,75 +36,128 @@
     <section class="page-section">
       <!-- ======= Store Section ======= -->
 
-      <section id="store" class="store section-bg">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Store</h2>
-            <p>Check Our Cute Merch</p>
-          </div>
+        <section id="store" class="store section-bg">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Store</h2>
+                    <p>Check Our Cute Merch</p>
+                </div>
 
-          <div class="row" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-12 d-flex justify-content-center">
-              <ul id="store-flters">
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-tshirts">T-Shirts</li>
-                <li data-filter=".filter-pins">Pins</li>
-                <li data-filter=".filter-mugs">Mugs</li>
-              </ul>
-            </div>
-          </div>
-
-          <div
-            class="row store-container"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="col-lg-3 store-item filter-tshirts">
-              <img
-                src="assets/img/menu/lobster-bisque.jpg"
-                class="store-img"
-                alt=""
-              />
-            <div class="store-content">
-                <a href="#">Meowglietta</a><span>$5.95</span>
-            </div>
-            <div class="store-details">
-                Cotton t-shirt with a cat printed on, simple as that
-            </div>
-            </div>
-
-            <div class="col-lg-3 store-item filter-pins">
-              <img
-                src="assets/img/menu/cake.jpg"
-                class="store-img"
-                alt=""
-              />
-                <!-- <div class="store-card"> -->
-                    <div class="store-content">
-                        <a href="#">Saphie Pim</a><span>$6.95</span>
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="store-flters">
+                            <li data-filter="*" class="filter-active">All</li>
+                            <li data-filter=".filter-tshirts">T-Shirts</li>
+                            <li data-filter=".filter-pins">Pins</li>
+                            <li data-filter=".filter-mugs">Mugs</li>
+                        </ul>
                     </div>
-                    <div class="store-details">Pin with a one-eyed cat</div>
-                <!-- </div> -->
             </div>
 
-            <div class="col-lg-3 store-item filter-mugs">
-              <img
-                src="assets/img/menu/bread-barrel.jpg"
-                class="store-img"
-                alt=""
-              />
-                <!-- <div class="store-card"> -->
-                    <div class="store-content">
-                        <a href="#">Cat Paw Mug</a><span>$6.95</span>
+            <div
+                class="row store-container"
+                data-aos="fade-up"
+                data-aos-delay="200"
+            >
+                <div class="col-lg-3 store-item filter-tshirts">
+                    <div class="store-card">
+                        <div class="store-img-container">
+                            <img
+                                src="assets/img/menu/lobster-bisque.jpg"
+                                class="store-img"
+                                alt=""
+                            />
+                        </div>
+                        <div class="store-content">
+                            <a href="#">Meowglietta</a><span>$5.95</span>
+                        </div>
                     </div>
-                    <div class="store-details">
-                        You can exclusively drink milk out of this
+                </div>
+
+                <div class="col-lg-3 store-item filter-pins">
+                    <div class="store-card">
+                        <div class="store-img-container">
+                            <img
+                                src="assets/img/menu/cake.jpg"
+                                class="store-img"
+                                alt=""
+                            />
+                        </div>
+                        <div class="store-content">
+                            <a href="#">Saphie Pin</a><span>$6.95</span>
+                        </div>
                     </div>
-                <!-- </div> -->
+                </div>
+
+                <div class="col-lg-3 store-item filter-mugs">
+                    <div class="store-card">  
+                        <div class="store-img-container">
+                            <img
+                                src="assets/img/menu/bread-barrel.jpg"
+                                class="store-img"
+                                alt=""
+                            />
+                        </div>
+                        <div class="store-content">
+                            <a href="#">Cat Paw Mug</a><span>$6.95</span>
+                        </div>
+                    </div> 
+                </div>  
+                
+                <!-- INIZIO DUPLICATI -->
+                
+                <div class="col-lg-3 store-item filter-tshirts">
+                    <div class="store-card">
+                        <div class="store-img-container">
+                            <img
+                                src="assets/img/menu/lobster-bisque.jpg"
+                                class="store-img"
+                                alt=""
+                            />
+                        </div>
+                        <div class="store-content">
+                            <a href="#">Meowglietta</a><span>$5.95</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 store-item filter-pins">
+                    <div class="store-card">
+                        <div class="store-img-container">
+                            <img
+                                src="assets/img/menu/cake.jpg"
+                                class="store-img"
+                                alt=""
+                            />
+                        </div>
+                        <div class="store-content">
+                            <a href="#">Saphie Pin</a><span>$6.95</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 store-item filter-mugs">
+                    <div class="store-card">  
+                        <div class="store-img-container">
+                            <img
+                                src="assets/img/menu/bread-barrel.jpg"
+                                class="store-img"
+                                alt=""
+                            />
+                        </div>
+                        <div class="store-content">
+                            <a href="#">Cat Paw Mug</a><span>$6.95</span>
+                        </div>
+                    </div> 
+                </div> 
+                
+                <!-- FINE DUPLICATI -->
+
+
             </div>
-          </div>
-        </div>
-      </section>
+            
+        </section>
+
     </section>
 
     <!-- End Store Section -->
