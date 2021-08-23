@@ -48,9 +48,25 @@
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="store-flters">
                             <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-tshirts">T-Shirts</li>
-                            <li data-filter=".filter-pins">Pins</li>
-                            <li data-filter=".filter-mugs">Mugs</li>
+                            <?php
+                                require 'utils/connect_db.php';
+                                $sql = "SELECT name FROM productsCategory";
+                                $result = $connection->query($sql);
+                                
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()){
+                                    echo'
+                                    <li data-filter=".filter-'.$row["name"].'">'.$row["name"].'</li>
+                                    ';
+                                    }
+                            
+                    
+                                } 
+                                else {
+                                    header("Location: index.php");
+                                    exit();
+                                }       
+                            ?>
                         </ul>
                     </div>
             </div>
@@ -60,103 +76,40 @@
                 data-aos="fade-up"
                 data-aos-delay="200"
             >
-                <div class="col-lg-3 store-item filter-tshirts">
-                    <div class="store-card">
-                        <div class="store-img-container">
-                            <img
-                                src="assets/img/menu/lobster-bisque.jpg"
-                                class="store-img"
-                                alt=""
-                            />
-                        </div>
-                        <div class="store-content">
-                            <a href="#">Meowglietta</a><span>$5.95</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 store-item filter-pins">
-                    <div class="store-card">
-                        <div class="store-img-container">
-                            <img
-                                src="assets/img/menu/cake.jpg"
-                                class="store-img"
-                                alt=""
-                            />
-                        </div>
-                        <div class="store-content">
-                            <a href="#">Saphie Pin</a><span>$6.95</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 store-item filter-mugs">
-                    <div class="store-card">  
-                        <div class="store-img-container">
-                            <img
-                                src="assets/img/menu/bread-barrel.jpg"
-                                class="store-img"
-                                alt=""
-                            />
-                        </div>
-                        <div class="store-content">
-                            <a href="#">Cat Paw Mug</a><span>$6.95</span>
-                        </div>
-                    </div> 
-                </div>  
+                <?php
+                    $sql = "SELECT p.id, p.name, category, description, price, c.name AS category FROM product as p JOIN productsCategory AS c ON p.category = c.id";
+                    $result = $connection->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()){
+                        echo '
+                        <div class="col-lg-4 store-item filter-'.$row["category"].'">
+                            <div class="store-card">
+                                <div class="store-img-container">
+                                    <img
+                                        src="assets/img/menu/lobster-bisque.jpg"
+                                        class="store-img"
+                                        alt=""
+                                    />
+                                </div>
+                                <div class="store-content">
+                                    <a href="product.php?id='.$row["id"].'">'.$row["name"].'</a><span>'.$row["price"].'</span>
+                                </div>
+                            </div>
+                        </div>';
+                        }
                 
-                <!-- INIZIO DUPLICATI -->
-                
-                <div class="col-lg-3 store-item filter-tshirts">
-                    <div class="store-card">
-                        <div class="store-img-container">
-                            <img
-                                src="assets/img/menu/lobster-bisque.jpg"
-                                class="store-img"
-                                alt=""
-                            />
-                        </div>
-                        <div class="store-content">
-                            <a href="#">Meowglietta</a><span>$5.95</span>
-                        </div>
-                    </div>
-                </div>
+                    $connection->close();
 
-                <div class="col-lg-3 store-item filter-pins">
-                    <div class="store-card">
-                        <div class="store-img-container">
-                            <img
-                                src="assets/img/menu/cake.jpg"
-                                class="store-img"
-                                alt=""
-                            />
-                        </div>
-                        <div class="store-content">
-                            <a href="#">Saphie Pin</a><span>$6.95</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 store-item filter-mugs">
-                    <div class="store-card">  
-                        <div class="store-img-container">
-                            <img
-                                src="assets/img/menu/bread-barrel.jpg"
-                                class="store-img"
-                                alt=""
-                            />
-                        </div>
-                        <div class="store-content">
-                            <a href="#">Cat Paw Mug</a><span>$6.95</span>
-                        </div>
-                    </div> 
-                </div> 
-                
-                <!-- FINE DUPLICATI -->
-
-
+                    } 
+                    else {
+                        $connection->close();
+                        header("Location: ../index.php");
+                        exit();
+                    }
+                ?>
             </div>
-            
+        
         </section>
 
     </section>
