@@ -37,13 +37,41 @@
     <section class="page-section">
       <!-- ======= Store Section ======= -->
 
-        <section id="store" class="store section-bg">
-            <div class="container" data-aos="fade-up">
-                <div class="section-title">
-                    <h2>Store</h2>
-                    <p>Check Our Cute Merch</p>
-                </div>
-        </section>
+        <?php
+            if(isset($_GET['id']) && is_numeric($_GET['id'])){
+
+                require 'utils/connect_db.php';
+                
+                $queryProduct = 'SELECT p.id, p.name, description, price, c.name AS category, picture FROM product AS p JOIN productsCategory AS c ON p.category = c.id WHERE p.id = '.$_GET['id'];
+                $resultProduct = $connection->query($queryProduct);
+                
+                if ($resultProduct !== false && $resultProduct->num_rows > 0) { 
+                    while($product = $resultProduct->fetch_assoc()){
+
+                        // VISUALIZZAZIONE DEL PRODOTTO echo $product["name"].' ('.$product["id"].')';
+
+                        //TODO : AGGIUNGERE IMMAGINE UTENTE
+                        $queryReviews = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersInfo AS u ON user = u.id WHERE product = '.$product["id"];
+                        $resultReviews = $connection->query($queryReviews);
+
+                        if ($resultReviews !== false && $resultReviews->num_rows > 0) { 
+                            while($review = $resultReviews->fetch_assoc()){ 
+
+                                // VISUALIZZAZIONE DELLE RECENSIONI $review["review"]
+
+                            }
+                        } 
+
+                    }
+                }
+
+                $connection->close();
+
+            } else {
+                header("Location: index.php");
+                exit();
+            }
+        ?>
 
     </section>
 

@@ -77,7 +77,7 @@
                 data-aos-delay="200"
             >
                 <?php
-                    $sql = "SELECT p.id, p.name, category, description, price, c.name AS category FROM product as p JOIN productsCategory AS c ON p.category = c.id";
+                    $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id";
                     $result = $connection->query($sql);
                     
                     if ($result->num_rows > 0) {
@@ -87,7 +87,7 @@
                             <div class="store-card">
                                 <div class="store-img-container">
                                     <img
-                                        src="assets/img/menu/lobster-bisque.jpg"
+                                        src="'.$row["picture"].'"
                                         class="store-img"
                                         alt=""
                                     />
