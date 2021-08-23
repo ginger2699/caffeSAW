@@ -10478,3 +10478,10 @@ p {
   float: inline-end;
   border: 5px solid rgba(255, 255, 255, 0.2);
 }
+
+/*Scrollbar*/
+
+#scroolbar{
+  max-width: 500px;
+  max-height: 300px;
+}
