@@ -61,38 +61,82 @@
                     </div>
 
                     <div class="col-sm-6 hidden-xs col-lg-6">
-                    <div class="scrollbar" id="style-2">
-                        <div class="force-overflow">
-                        <div class="review mt-4">
-                            <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
-                                <div class="ml-2">
-                                    <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">Hui jhong</span><span class="dot"></span><span class="date">12 Aug 2020</span></div>
-                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                        <div class="scrollbar" id="style-2">
+                            <div class="force-overflow">
+                                <?php
+                                $limit = 10;
+                                if(isset($_GET['error'])){
+                                    if($_GET['error']=='emptyFields'){
+                                        echo'<div class="alert alert-danger" role="alert">
+                                                Please fill in all fields.
+                                            </div>';
+                                    }
+                                    if($_GET['error']=='unexpectedError'){
+                                        echo'<div class="alert alert-danger" role="alert">
+                                                An unexpected error occured, please try again.
+                                            </div>';
+                                    }
+                                }  
+                                require 'utils/connect_db.php';
+                                $sql = "SELECT productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
+                                JOIN product ON productsreview.product=product.id WHERE user =".$_SESSION['userId']." LIMIT ".$limit;
+                                $result = $connection->query($sql); 
+                                if ($result->num_rows > 0) {
+                                // output data of each row
+                                    while($row = $result->fetch_assoc()){
+                                        echo'
+                                        <div class="review mt-4">
+                                        <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
+                                            <div class="ml-2">
+                                                <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.$row['name'].'</span><span>'.str_repeat('&nbsp;', 5).'</span><span class="dot"></span><span class="date">'.$row['date'].'</span></div>
+                                                <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="comment-text">'.htmlspecialchars($row['review']).'</p>
+                                        </div>
+                                        </div>
+                                        ';
+                                    }
+                                $connection->close();
+
+                                } 
+                                else {
+                                    $connection->close();
+                                    header("Location: ../login.php");
+                                    exit();
+                                }
+
+                                ?>
+                                <!--<div class="review mt-4">
+                                    <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
+                                        <div class="ml-2">
+                                            <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">Hui jhong</span><span class="dot"></span><span class="date">12 Aug 2020</span></div>
+                                            <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <p class="comment-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mt-2">
-                                <p class="comment-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                            </div>
-                        </div>
-                        <div class="review mt-4">
-                            <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
-                                <div class="ml-2">
-                                    <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">Hui jhong</span><span class="dot"></span><span class="date">12 Aug 2020</span></div>
-                                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <p class="comment-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                <div class="review mt-4">
+                                    <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
+                                        <div class="ml-2">
+                                            <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">Hui jhong</span><span class="dot"></span><span class="date">12 Aug 2020</span></div>
+                                            <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <p class="comment-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                    </div>
+                                </div>-->
                             </div>
                         </div>
-                        </div>
-                    </div>
-                    <button id = "review button" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>
+                        <button id = "review button" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>
                     </div>
                 </div>
                 <div class=“row”>
-                    <div class=“col-sm-8”> 
-                    </div>
+                    <div class=“col-sm-8”> </div>
                     <div class=“col-sm-4”> Change Your Password </div>
                     <div class=“col-sm-4”><a class="btn btn-primary btn-xl" href="update_profile.php">Update your profile!</a></div>
                 </div>
