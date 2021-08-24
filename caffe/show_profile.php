@@ -61,7 +61,8 @@
                     </div>
 
                     <div class="col-sm-6 hidden-xs col-lg-6">
-                        <div id="scroolbar" class="overflow-auto">
+                    <div class="scrollbar" id="style-2">
+                        <div class="force-overflow">
                         <div class="review mt-4">
                             <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
                                 <div class="ml-2">
@@ -85,6 +86,8 @@
                             </div>
                         </div>
                         </div>
+                    </div>
+                    <button id = "review button" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>
                     </div>
                 </div>
                 <div class=“row”>

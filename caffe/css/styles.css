@@ -10483,5 +10483,62 @@ p {
 
 #scroolbar{
   max-width: 500px;
-  max-height: 300px;
+  max-height: 200px;
+}
+.scrollbar-young-passion::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px; }
+  
+  .scrollbar-young-passion::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5; }
+  
+  .scrollbar-young-passion::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-image: -webkit-gradient(linear, left top, right top, from(#ff8177), color-stop(0%, #ff867a),
+  color-stop(21%, #ff8c7f), color-stop(52%, #f99185), color-stop(78%, #cf556c), to(#b12a5b));
+  background-image: -webkit-linear-gradient(left, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%,
+  #b12a5b 100%);
+  background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%,
+  #b12a5b 100%); }
+
+  .scrollbar
+{
+  border-radius: 20px;
+	margin-left: 30px;
+	float: left;
+	max-height: 300px;
+	max-width: 500px;
+	background: #ffffff00;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+#style-2::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #ffffff00;
+}
+
+#style-2::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #ffffff00;
+}
+
+#style-2::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+  background-image: linear-gradient(to right, #ff9277 0%, #ffab7a 0%, #ffb27f 21%, #f9a685 52%, #cf8255 78%,
+  #b14f2a 100%); }
 }
