@@ -10479,6 +10479,9 @@ p {
   border: 5px solid rgba(255, 255, 255, 0.2);
 }
 
+.profileCard{
+  background-color: rgba(230, 167, 86, 0.9) !important; 
+}
 /*Scrollbar*/
 
 #scroolbar{
