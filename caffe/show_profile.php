@@ -157,9 +157,10 @@
 
                             ?>
                             <div id="newReviews">
+                            <button id = "reviewButton" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
                             </div>
                     </div>
-                        <button id = "reviewButton" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+
                 </div>
             </div>
             </div>
