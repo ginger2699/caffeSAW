@@ -68,6 +68,9 @@ try{
     if(!($connection -> close())){
         throw new Exception();
     }
+    echo'<div id="newReviews">
+    <button id = "reviewButton" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+    </div>';
 
 }
 catch (Exception $e){
