@@ -280,6 +280,7 @@
       -->
       <!-- End Menu Section -->
     </section>
+            </section>
 
     <?php
        require 'footer.php';

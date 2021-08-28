@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2021 at 11:21 PM
+-- Generation Time: Aug 27, 2021 at 11:01 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.5
 
@@ -41,9 +41,9 @@ CREATE TABLE `productsreview` (
 --
 
 INSERT INTO `productsreview` (`id`, `product`, `user`, `review`, `stars`, `date`) VALUES
-(1, 4, 4, 'I accidentally drank tea with this mug and then it exploded!\r\nCool, would recommend  ', 0, '2021-08-21'),
-(2, 1, 5, 'I bought this because it looks nothing like my cat, and if they ask me \"Is that your cat?\" I just say no', 0, '2021-05-08'),
-(3, 4, 5, 'I bought this for my mom, she really liked it, until she drank coffee out of it and her hair fell off\r\nMug: 0/10 would not reccoment\r\nBald mom: 101/10 She\'s just like me now!', 0, '2021-06-18');
+(1, 4, 4, 'I accidentally drank tea with this mug and then it exploded!\r\nCool, would recommend  ', 3, '2021-08-21'),
+(2, 1, 5, 'I bought this because it looks nothing like my cat, and if they ask me \"Is that your cat?\" I just say no', 1, '2021-05-08'),
+(3, 4, 5, 'I bought this for my mom, she really liked it, until she drank coffee out of it and her hair fell off\r\nMug: 0/10 would not reccoment\r\nBald mom: 101/10 She\'s just like me now!', 5, '2021-06-18');
 
 --
 -- Triggers `productsreview`

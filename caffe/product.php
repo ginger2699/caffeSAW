@@ -38,6 +38,7 @@
       <!-- ======= Store Section ======= -->
 
         <?php
+            
             if(isset($_GET['id']) && is_numeric($_GET['id'])){
 
                 require 'utils/connect_db.php';
@@ -48,19 +49,86 @@
                 if ($resultProduct !== false && $resultProduct->num_rows > 0) { 
                     while($product = $resultProduct->fetch_assoc()){
 
-                        // VISUALIZZAZIONE DEL PRODOTTO echo $product["name"].' ('.$product["id"].')';
+
+                        echo '
+                        <div class="product-wrapper">
+                            <div class="product-image-box"> 
+                                <img src="'.$product["picture"].'" class="product-img" alt=""/>
+                            </div>
+                            <div class="product-info-box"> 
+                                <div class="product-details-box bg-faded rounded p-5"> 
+
+                                    <div class="product-details-container">
+                                        <div class="product-name-container"> 
+                                            <span>'.$product["name"].'</span><span>$'.$product["price"].'</span>
+                                        </div>
+                                        <div> 
+                                            <p>'.$product["description"].'</p>
+                                        </div>
+                                        <div class="product-actions-container">
+                                            <div> 
+                                                <input type="number" value="1"  min="1" max="100">
+                                                <a href="" class="me-4 text-reset">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </a>
+                                            </div>
+                                            <div> 
+                                                <a href="#">Leave a Review!</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        ';
 
                         //TODO : AGGIUNGERE IMMAGINE UTENTE
                         $queryReviews = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersInfo AS u ON user = u.id WHERE product = '.$product["id"];
                         $resultReviews = $connection->query($queryReviews);
 
                         if ($resultReviews !== false && $resultReviews->num_rows > 0) { 
+
+                            echo '
+                            <div class="product-reviews-box bg-faded rounded"> 
+
+                                <div class="overflow-auto product-reviews-container">
+                            ';
+
                             while($review = $resultReviews->fetch_assoc()){ 
 
-                                // VISUALIZZAZIONE DELLE RECENSIONI $review["review"]
+                                //TODO : AGGIUNGERE IMMAGINE UTENTE
 
+                                echo '
+                                    <div class="review mt-4">
+                                        <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
+                                            <div class="ml-2">
+                                                <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.$review["name"].'</span><span class="dot"></span><span class="date">'.date_format(new DateTime($review['date']), 'd M Y').'</span></div>
+                                                <div class="rating">';
+
+                                                for ($i = 1; $i <= $review["stars"]; $i++) {
+                                                    echo '<i class="fa fa-star"></i>';
+                                                }
+                                echo '
+                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="comment-text">'.$review["review"].'</p>
+                                        </div>
+                                    </div>
+                                ';
                             }
-                        } 
+                            
+                            echo '
+                                </div>
+
+                            </div>
+                            ';
+                        }
+                        
+                        echo '
+                            </div>
+
+                        </div>
+                        ';
 
                     }
                 }
@@ -71,8 +139,9 @@
                 header("Location: index.php");
                 exit();
             }
+            
         ?>
-
+        
     </section>
 
     <!-- End Store Section -->

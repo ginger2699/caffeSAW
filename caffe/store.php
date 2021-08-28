@@ -93,7 +93,7 @@
                                     />
                                 </div>
                                 <div class="store-content">
-                                    <a href="product.php?id='.$row["id"].'">'.$row["name"].'</a><span>'.$row["price"].'</span>
+                                    <a href="product.php?id='.$row["id"].'">'.$row["name"].'</a><span>$'.$row["price"].'</span>
                                 </div>
                             </div>
                         </div>';

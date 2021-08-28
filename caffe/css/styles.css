@@ -10470,6 +10470,85 @@ p {
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Product Section */
+
+
+.product-wrapper {
+  display: grid;
+  justify-content: center;
+  grid-gap: 10px;
+  grid-template-columns: repeat(2, [col] auto );
+  grid-template-rows: repeat(2, [row] auto  );
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.product-image-box {
+  grid-column: col / span 2;
+  grid-row: row 4;
+  display: flex;
+  justify-content: center;
+}
+
+.product-image-box .product-img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.product-info-box {
+  grid-column: col 4 / span 2;
+  grid-row: row 4;
+  display: grid;
+  grid-template-rows: repeat(2, [row] 50%  );
+  max-width: 500px;
+}
+
+.product-details-box {
+  margin-bottom: 5px;
+}
+
+.product-details-box .product-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.product-details-box .product-details-container .product-name-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-details-box .product-details-container span
+{
+  padding-right: 10px;
+  position: relative;
+  z-index: 3;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.product-details-box .product-details-container .product-actions-container {
+  display: flex;
+  direction: row;
+  justify-content: space-between;
+}
+
+.product-actions-container input {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.product-reviews-box {
+  margin-top: 5px;
+  display: inherit;
+}
+
+.product-reviews-box .product-reviews-container {
+  max-width: 500px;
+  padding: 0 3rem !important;
+}
+
 /* Profile Section */
 .resize{
   width: 100px; 
@@ -10477,6 +10556,10 @@ p {
   border-radius: 50%;
   float: inline-end;
   border: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+.dot {
+  width: 50px;
 }
 
 .profileCard{
@@ -10543,5 +10626,5 @@ p {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #D62929;
   background-image: linear-gradient(to right, #ff9277 0%, #ffab7a 0%, #ffb27f 21%, #f9a685 52%, #cf8255 78%,
-  #b14f2a 100%); }
+  #b14f2a 100%); 
 }
