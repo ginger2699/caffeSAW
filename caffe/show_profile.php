@@ -112,7 +112,7 @@
                     <div class="scrollbar" id="style-2">
                         <div class="force-overflow">
                             <?php
-                            $limit = 10;
+                            $limit = 5;
                             if(isset($_GET['error'])){
                                 if($_GET['error']=='emptyFields'){
                                     echo'<div class="alert alert-danger" role="alert">
@@ -156,32 +156,10 @@
                             }
 
                             ?>
-                            <div class="review mt-4">
-                                <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
-                                    <div class="ml-2">
-                                        <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">Hui jhong</span><span class="dot"></span><span class="date">12 Aug 2020</span></div>
-                                        <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    </div>
-                                </div>
-                                <div class="mt-2">
-                                    <p class="comment-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                </div>
-                            </div>
-                            <div class="review mt-4">
-                                <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
-                                    <div class="ml-2">
-                                        <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">Hui jhong</span><span class="dot"></span><span class="date">12 Aug 2020</span></div>
-                                        <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                                    </div>
-                                </div>
-                                <div class="mt-2">
-                                    <p class="comment-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                </div>
-                            </div>
                             <div id="newReviews">
                             </div>
                     </div>
-                        <button id = "review button" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+                        <button id = "reviewButton" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
                 </div>
             </div>
             </div>
@@ -195,5 +173,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="js/reviews.js"></script>
     </body>
 </html>
