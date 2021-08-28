@@ -37,31 +37,20 @@
                                             Please fill in all fields?
                                         </div>';
                                 }
-                                if($_GET['error']=='unexpectedError'){
+                                if($_GET['error']=='invalidCredentials'){
                                     echo'<div class="alert alert-danger" role="alert">
-                                            An unexpected error occured, please try again.
+                                            Email not registered.
                                         </div>';
                                 }
-                            }
-                            if(isset($_GET['success'])){
-                                if($_GET['success']=='yes'){
-                                    echo'<div class="alert alert-success" role="alert">
-                                            Registration complete, please log in.
+                                if($_GET['error']=='invalidPassword'){
+                                    echo'<div class="alert alert-danger" role="alert">
+                                            The two password do not match.
                                         </div>';
                                 }
-                                if($_GET['success']=='loggedIn'){
-                                if(isset($_SESSION['userId'])){ 
-                                    $id = $_SESSION['userId'];
-
-                                        echo'<div class="alert alert-success" role="alert">
-                                            You\'re logged in set!'.strval($id).'
-                                        </div>';
-                                }else{
-                                        echo'<div class="alert alert-success" role="alert">
-                                            You\'re logged in!
-                                        </div>';
-                                    }
-                                    
+                                else{
+                                    echo'<div class="alert alert-danger" role="alert">
+                                        Connection error, please try again later.
+                                    </div>';
                                 }
                             }
                             if(isset($_GET['key'])&&isset($_GET['token'])){
@@ -104,7 +93,7 @@
                                 }
                                 //var_dump($row['expDate']);
                                 //var_dump($curDate);
-                                if($row['expDate'] <= $curDate){
+                                if($row['expDate'] < $curDate){
                                     throw new Exception("InvalidDate");
                                 }
 
@@ -133,7 +122,7 @@
                             <?php 
                             }
                             else{
-                                echo'<p>This forget password link has been expired</p>';
+                                echo'<p>This forgot password link has been expired</p>';
                             }
                             ?>
                             <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>

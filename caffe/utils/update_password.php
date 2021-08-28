@@ -3,7 +3,9 @@ try{
     if(!(isset($_POST['email'])) || !(isset($_POST['token'])) || !(isset($_POST['changepass'])) || !(isset($_POST['pass'])) ||strlen($_POST['email']) == 0){
         throw new Exception('emptyFields');
     }
-
+    if ($_POST['pass'] != $_POST['confirm']) {
+        throw new Exception('invalidPassword');
+    }
     include "connect_db.php";
     
     // Create a prepared statement
@@ -11,12 +13,12 @@ try{
         throw new Exception();
     }
 
-    if(!($stmt -> prepare("SELECT id FROM usersinfo WHERE email=?"))){
+    if(!($stmt -> prepare("SELECT id FROM tokenrecoverpassword WHERE email=? AND token=?"))){
         throw new Exception("error1");
     }
     
       // Bind parameters
-    if(!($stmt -> bind_param("s",$_POST['email']))){
+    if(!($stmt -> bind_param("ss",$_POST['email'],$_POST['token']))){
         throw new Exception("error2");
     }
     
@@ -42,21 +44,14 @@ try{
     //Se utente presente del DB allora genero token
     if($row)
     {
-        
-        $token = md5($_POST['email']).rand(10,9999);
     
-        $expFormat = mktime(
-        date("m") ,date("d")+1, date("Y")
-        );
-    
-        $expDate = date("Y-m-d",$expFormat);
-    
-        if(!($stmt -> prepare("INSERT INTO tokenRecoverPassword VALUES (DEFAULT,?,?,?)"))){
+        if(!($stmt -> prepare("UPDATE usersInfo SET password = ? WHERE id = ?"))){
             throw new Exception("error1");
         }
+        $hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
         
           // Bind parameters
-        if(!($stmt -> bind_param("sss",$_POST['email'],$token,$expDate))){
+        if(!($stmt -> bind_param("ss",$hash,$_SESSION['userId']))){
             throw new Exception("error2");
         }
         
@@ -64,36 +59,8 @@ try{
         if(!($stmt -> execute())){
             throw new Exception("error3");
         }
-    
-        $link = "<a href='http://localhost/caffeSAW/caffe/update_password.php?key=".$_POST['email']."&amp;token=".$token."'>Click To Reset password</a>";
-    
-        require '../PHPMailer/Exception.php';
-        require '../PHPMailer/PHPMailer.php';
-        require '../PHPMailer/SMTP.php';
-      
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->IsSMTP(); // enable SMTP
-    
-        $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-        $mail->SMTPAuth = true; // authentication enabled
-        $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
-        $mail->Host = "smtp.gmail.com";
-        $mail->Port = 465; // or 587
-        $mail->IsHTML(true);
-        $mail->Username = "catcafesaw@gmail.com";
-        $mail->Password = "giorgio.1999";
-        $mail->SetFrom("catcafesaw@gmail.com");
-        $mail->Subject = "Reset Password - Cat Cafe";
-        $mail->Body= 'Click On This Link to Reset Password '.$link.'';
-        $mail->AddAddress($_POST['email']);
-    
-        if(!$mail->Send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Message has been sent";
-        }
-        //die();
-    }else{
+    }
+    else{
         throw new Exception('invalidCredentials');
         if(!($stmt -> close())){
             throw new Exception();
@@ -109,23 +76,23 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../reset_password.php?success=tuttoappost");
+    header("Location: ../login.php?success=updated");
     exit();
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../reset_password.php?error=emptyFields");
+        header("Location: ../update_password.php?error=emptyFields");
         exit();
 
     }
     if ($e->getMessage()==='invalidCredentials') {
-        header("Location: ../reset_password.php?error=invalidCredentials");
+        header("Location: ../update_password.php?error=invalidCredentials");
         exit();
 
     }
     else{
         //header("Location: ../reset_password.php?error=unexpectedError");
-        header("Location: ../reset_password.php?error=".$e->getMessage());
+        header("Location: ../update_password.php?error=".$e->getMessage());
         exit();
     }
 }

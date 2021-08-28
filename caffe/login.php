@@ -42,11 +42,21 @@
                                             An unexpected error occured, please try again.
                                         </div>';
                                 }
+                                if($_GET['error']=='invalidCredentials'){
+                                    echo'<div class="alert alert-danger" role="alert">
+                                            Email or password not correct.
+                                        </div>';
+                                }
                             }
                             if(isset($_GET['success'])){
                                 if($_GET['success']=='yes'){
                                     echo'<div class="alert alert-success" role="alert">
                                             Registration complete, please log in.
+                                        </div>';
+                                }
+                                if($_GET['success']=='updated'){
+                                    echo'<div class="alert alert-success" role="alert">
+                                            Password updated, please log in.
                                         </div>';
                                 }
                                 if($_GET['success']=='loggedIn'){
