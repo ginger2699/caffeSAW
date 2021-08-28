@@ -51,6 +51,9 @@
                             <?php
                                 require 'utils/connect_db.php';
                                 $sql = "SELECT name FROM productsCategory";
+                                if(isset($_GET['searchbar'])){
+                                    $sql = "SELECT name FROM productsCategory WHERE ";
+                                }
                                 $result = $connection->query($sql);
                                 
                                 if ($result->num_rows > 0) {

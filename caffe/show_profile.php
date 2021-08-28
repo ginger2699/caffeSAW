@@ -95,10 +95,10 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <div class="row">
                                 <div class="col-sm-6">
-                                <a class="btn btn-info " target="__blank" href="update_profile.php">Update your profile!</a>
+                                <a class="btn btn-primary btn-l" target="__blank" href="update_profile.php">Update your profile!</a>
                                 </div>
                                 <div class="col-sm-6">
-                                <a class="btn btn-primary btn-xl " target="__blank" href=#>Change your password!</a>
+                                <a class="btn btn-primary btn-l" target="__blank" href="reset_password.php">Change your password!</a>
                                 </div>
                             </div>
                         </li>
