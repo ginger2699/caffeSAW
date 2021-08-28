@@ -69,12 +69,39 @@
             if(isset($_GET['id']) && is_numeric($_GET['id'])){
 
                 require 'utils/connect_db.php';
+    
+                // Create a prepared statement
+                if(!($stmt = $connection -> stmt_init())){
+                    throw new Exception();
+                }
+
                 
-                $queryProduct = 'SELECT p.id, p.name, description, price, c.name AS category, picture FROM product AS p JOIN productsCategory AS c ON p.category = c.id WHERE p.id = '.$_GET['id'];
-                $resultProduct = $connection->query($queryProduct);
+                if(!($stmt -> prepare("SELECT p.id, p.name, description, price, c.name AS category, picture FROM product AS p JOIN productsCategory AS c ON p.category = c.id WHERE p.id = ?"))){
+                    throw new Exception();
+                }
                 
-                if ($resultProduct !== false && $resultProduct->num_rows > 0) { 
-                    while($product = $resultProduct->fetch_assoc()){
+                // Bind parameters
+                if(!($stmt -> bind_param("s",$_GET['id']))){
+                    throw new Exception();
+                }
+                
+                // Execute query
+                if(!($stmt -> execute())){
+                    throw new Exception();
+                }
+
+                if(!($results = $stmt -> get_result())){
+                    throw new Exception();
+                }
+
+                $numOfRows = $results -> num_rows;
+                
+                if($numOfRows === 0) {
+                    throw new Exception();
+                }
+                
+                if ($results->num_rows > 0) { 
+                    while($product = $results->fetch_assoc()){
 
 
                         echo '
@@ -162,7 +189,15 @@
                     }
                 }
 
-                $connection->close();
+                
+                // Close statement
+                if(!($stmt -> close())){
+                    throw new Exception();
+                }
+
+                if(!($connection -> close())){
+                    throw new Exception();
+                };
 
             } else {
                 header("Location: index.php");
