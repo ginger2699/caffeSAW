@@ -10,25 +10,28 @@ try{
     require 'connect_db.php';
     
     // Create a prepared statement
-    $stmt = $connection -> stmt_init();
-    /*if(!$stmt){
-        header("Location: ../registration.php?error=unexpectedError");
-        exit();
-    }*/
-    
-    $stmt -> prepare("SELECT id, password FROM usersInfo WHERE email = ?");
-    
-      // Bind parameters
-    $stmt -> bind_param("s",$_POST['email']);
-    
-      // Execute query
-    $stmt -> execute();
-    if(!$stmt){
-        echo'error';
-        die();
+    if(!($stmt = $connection -> stmt_init())){
+        throw new Exception();
     }
 
-    $results = $stmt -> get_result();
+    
+    if(!($stmt -> prepare("SELECT id, password FROM usersInfo WHERE email = ?"))){
+        throw new Exception();
+    }
+    
+      // Bind parameters
+    if(!($stmt -> bind_param("s",$_POST['email']))){
+        throw new Exception();
+    }
+    
+      // Execute query
+    if(!($stmt -> execute())){
+        throw new Exception();
+    }
+
+    if(!($results = $stmt -> get_result())){
+        throw new Exception();
+    }
 
     $numOfRows = $results -> num_rows;
     
@@ -36,7 +39,9 @@ try{
         throw new Exception('invalidCredentials');
     }
 
-    $row = $results -> fetch_assoc();
+    if(!($row = $results -> fetch_assoc())){
+        throw new Exception();
+    }
 
     if(!password_verify($_POST['pass'],$row['password'])) {
         throw new Exception('invalidCredentials');
@@ -45,14 +50,14 @@ try{
     session_start();
     $_SESSION['userId']=$row['id'];
 
-    var_dump($row['id']);
-    echo $row['id'];
-
-
     // Close statement
-    $stmt -> close();
-    
-    $connection -> close();
+    if(!($stmt -> close())){
+        throw new Exception();
+    }
+
+    if(!($connection -> close())){
+        throw new Exception();
+    };
     
     header("Location: ../login.php?success=loggedIn");
     exit();
