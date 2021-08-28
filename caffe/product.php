@@ -39,15 +39,69 @@
 
         <?php
             
+            if(isset($_GET['success'])) {
+                echo'<div class="alert alert-success" role="alert">
+                    The product it\'s been added to your cart!
+                </div>';
+            }
+
+            if(isset($_GET['error'])) {
+                switch($_GET['error']) {
+                    case 'emptyFields':
+                        echo'<div class="alert alert-danger" role="alert">
+                                Please select the amount of the desired product.
+                            </div>';
+                        break;
+                    case 'insertFailed':
+                        echo'<div class="alert alert-danger" role="alert">
+                                The desired product is already in your cart.
+                            </div>';
+                        break;
+                    case 'invalidSubmit':
+                    default:
+                        echo'<div class="alert alert-danger" role="alert">
+                                An unexpected error occured, please try again.
+                            </div>';
+                        break;
+                }
+            }
+
             if(isset($_GET['id']) && is_numeric($_GET['id'])){
 
                 require 'utils/connect_db.php';
+    
+                // Create a prepared statement
+                if(!($stmt = $connection -> stmt_init())){
+                    throw new Exception();
+                }
+
                 
-                $queryProduct = 'SELECT p.id, p.name, description, price, c.name AS category, picture FROM product AS p JOIN productsCategory AS c ON p.category = c.id WHERE p.id = '.$_GET['id'];
-                $resultProduct = $connection->query($queryProduct);
+                if(!($stmt -> prepare("SELECT p.id, p.name, description, price, c.name AS category, picture FROM product AS p JOIN productsCategory AS c ON p.category = c.id WHERE p.id = ?"))){
+                    throw new Exception();
+                }
                 
-                if ($resultProduct !== false && $resultProduct->num_rows > 0) { 
-                    while($product = $resultProduct->fetch_assoc()){
+                // Bind parameters
+                if(!($stmt -> bind_param("s",$_GET['id']))){
+                    throw new Exception();
+                }
+                
+                // Execute query
+                if(!($stmt -> execute())){
+                    throw new Exception();
+                }
+
+                if(!($results = $stmt -> get_result())){
+                    throw new Exception();
+                }
+
+                $numOfRows = $results -> num_rows;
+                
+                if($numOfRows === 0) {
+                    throw new Exception();
+                }
+                
+                if ($results->num_rows > 0) { 
+                    while($product = $results->fetch_assoc()){
 
 
                         echo '
@@ -66,12 +120,14 @@
                                             <p>'.$product["description"].'</p>
                                         </div>
                                         <div class="product-actions-container">
-                                            <div> 
-                                                <input type="number" value="1"  min="1" max="100">
-                                                <a href="" class="me-4 text-reset">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </a>
-                                            </div>
+                                            <form action="utils/addToCart.php" method="post">
+                                                <div class="product-actions-container"> 
+                                                    <input name="productid" type="number" value="'.$product["id"].'" style="display: none;">
+                                                    <input name="quantity" type="number" value="1"  min="1" max="100">
+                                                    <input name="submit" type="submit" class="btn btn-primary btn-block" value="Add to cart">
+                                                    <i class="fas fa-lg fa-cart-plus"></i>
+                                                </div>
+                                            </form>
                                             <div> 
                                                 <a href="#">Leave a Review!</a>
                                             </div>
@@ -133,7 +189,15 @@
                     }
                 }
 
-                $connection->close();
+                
+                // Close statement
+                if(!($stmt -> close())){
+                    throw new Exception();
+                }
+
+                if(!($connection -> close())){
+                    throw new Exception();
+                };
 
             } else {
                 header("Location: index.php");

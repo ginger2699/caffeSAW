@@ -10530,13 +10530,15 @@ p {
 
 .product-details-box .product-details-container .product-actions-container {
   display: flex;
-  direction: row;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .product-actions-container input {
   width: 50px;
   margin-right: 10px;
+  align-self: stretch;
 }
 
 .product-reviews-box {
@@ -10590,7 +10592,7 @@ p {
   background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%,
   #b12a5b 100%); }
 
-  .scrollbar
+.scrollbar
 {
   border-radius: 20px;
 	margin-left: 30px;
