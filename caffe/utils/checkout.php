@@ -91,7 +91,9 @@ try {
 
         $_SESSION['cart']=array();
 
+        header("Location: ../store.php?success=checkout");
         exit();
+
 
     } catch(Exception $e) {
         $connection->rollback();
@@ -100,11 +102,11 @@ try {
 } catch(Exception $e) {
     if ($e->getMessage()==='invalidSubmit') {
         echo $e;
-        exit();
+        header("Location: ../store.php?error=invalidSubmit");
     }
     else {
         echo $e;
-        exit();
+        header("Location: ../store.php?error=invalidSubmit");
     }
 }
 ?>
