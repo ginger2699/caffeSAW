@@ -10546,7 +10546,7 @@ p {
   margin-top: 5px !important;
   margin-left: 0px !important;
   margin-bottom: 0px !important;
-  max-height: none !important;
+  max-height: 500px !important;
   max-width: none !important;
   display: inherit;
   padding: 0 3rem !important;
@@ -10559,6 +10559,11 @@ p {
 
 .prod {
   background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#text-area-product{
+  min-width: 60%;
+  min-height: 100%;
 }
 
 /* Cart Section*/

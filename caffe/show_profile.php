@@ -44,13 +44,13 @@
                                         Update complete.
                                     </div>';
                             }
-                        }
-                        if($_GET['success']=='loggedIn'){
-                          if(isset($_SESSION['userId'])){ 
-                                  echo'<div class="alert alert-success" role="alert">
-                                      You\'re logged in!
-                                  </div>';
-                          }
+                            if($_GET['success']=='loggedIn'){
+                              if(isset($_SESSION['userId'])){ 
+                                      echo'<div class="alert alert-success" role="alert">
+                                          You\'re logged in!
+                                      </div>';
+                              }
+                            }
                         }
                         require 'utils/connect_db.php';
                         $sql = "SELECT name, surname, email, phonenumber FROM usersInfo WHERE id =".$_SESSION['userId'];
@@ -158,7 +158,8 @@
                             $connection->close();
                             echo'
                                     <div id="newReviews">
-                                      <button id = "reviewButton" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+                                      <button id = "reviewButton" type="submit" value = "1" class="btn btn-primary btn-l">Show more reviews</button>  
+                                      <br><br>  
                                     </div>
                                   </div>
                                 </div>';

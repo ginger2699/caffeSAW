@@ -92,12 +92,14 @@ try{
     if(isset($_POST['prodId'])){
         echo'<div id="newReviews">
         <input id="productIdbButtonProd" type="number" value="'.htmlspecialchars($_POST['prodId']).'" style="display: none;">
-        <button id = "reviewButtonProd" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+        <button id = "reviewButtonProd" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Show more reviews</button> 
+        <br><br>  
         </div>';
     }
     else if(isset($_SESSION['userId'])){
         echo'<div id="newReviews">
-        <button id = "reviewButton" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+        <button id = "reviewButton" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Show more reviews</button> 
+        <br><br>   
         </div>';
     }
 

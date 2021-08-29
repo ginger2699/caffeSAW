@@ -127,7 +127,7 @@
                                                 </div>
                                             </form>
                                             <div> 
-                                                <a href="#">Leave a Review!</a>
+                                                <a href="leaveReview.php?id='.$product["id"].'">Leave a Review!</a>
                                             </div>
                                         </div>
                                     </div>
@@ -191,27 +191,6 @@
 
                         </div>
                         ';
-                        /*echo '
-                                <!--<div class="product-details-box bg-faded rounded p-5"> 
-
-                                    <div class="product-details-container">
-                                        <div class="product-name-container"> 
-                                            <span>Leave a Review!</span>
-                                        </div>
-                                        <div class="product-actions-container">
-                                            <form action="utils/addReview.php" method="post">
-                                                <div class="product-actions-container"> 
-                                                    <input name="productid" type="number" value="'.$product["id"].'" style="display: none;">
-                                                    <textarea name="description" type="text"></textarea>
-                                                    <input name="submit" type="submit" class="btn btn-primary btn-block" value="Send Review">
-                                                    <i class="fas fa-lg fa-pen-square"></i>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div> -->
-                        ';*/
-
                     }
                 }
 
