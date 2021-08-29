@@ -53,6 +53,11 @@
                                     Please select the amount of the desired product.
                                 </div>';
                             break;
+                        case 'mustLogin':
+                            echo'<div class="alert alert-danger" role="alert">
+                                    You must be logged in to add products to the cart.
+                                </div>';
+                            break;
                         case 'insertFailed':
                         case 'invalidSubmit':
                         default:
@@ -108,7 +113,7 @@
 
                                     <div class="product-details-container">
                                         <div class="product-name-container"> 
-                                            <span>'.$product["name"].'</span><span>$'.$product["price"].'</span>
+                                            <span>'.$product["name"].'</span><span>$'.number_format($product["price"], 2, '.', '').'</span>
                                         </div>
                                         <div> 
                                             <p>'.$product["description"].'</p>

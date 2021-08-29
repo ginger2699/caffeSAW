@@ -6,7 +6,11 @@ try {
 
     session_start();
 
-    if(!isset($_POST['submit'])||!strlen($_POST['submit'])||!isset($_SESSION['userId'])){
+    if(!isset($_SESSION['userId'])) {
+        throw new Exception('mustLogin');
+    }
+
+    if(!isset($_POST['submit'])||!strlen($_POST['submit'])){
         throw new Exception('invalidSubmit');
     }
 
@@ -14,9 +18,9 @@ try {
 
     $alreadyInCart = false;
     
-    foreach($_SESSION['cart'] as $cart) {
+    foreach($_SESSION['cart'] as &$cart) {
         if ($cart['id'] === $_POST['productid']) {
-            $cart['quantity'] += $_POST['quantity'];
+            $cart['quantity'] = $cart['quantity'] + $_POST['quantity'];
             $alreadyInCart = true;
         }
     }
@@ -44,6 +48,10 @@ try {
 } catch(Exception $e) {
     if ($e->getMessage()==='emptyFields') {
         header("Location: ../product.php?id=".$_POST['productid']."&error=emptyFields");
+        exit();
+    }
+    else if ($e->getMessage()==='mustLogin') {
+        header("Location: ../product.php?id=".$_POST['productid']."&error=mustLogin");
         exit();
     }
     else if ($e->getMessage()==='invalidSubmit') {

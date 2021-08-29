@@ -74,42 +74,68 @@
     </div>
 </nav>
 <!-- Cart -->
-<!-- IF NOT LOGGED IN -->
-<div id="login_bar" style="text-align: right">                                               
-            <ul id="login_signup">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
-                        <i class="fas fa-lg fa-cart-plus"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <!-- IF EMPYT -->
-                        <!-- SHOW CART CONTENT --->
-                        <!--
-                        <a class="dropdown-item" href="show_profile.php">View Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="utils/logout.php">Logout</a>
-                        -->
-                        <div class="cart-element">
-                            <div class="box">
-                                <img class="cart-img" src="assets/img/products/blackTshirt.jpg" class="product-img" alt=""/>
-                            </div>
-                            <div class="box cart-element-info">
-                                <div class="name"><span>Black Meowglietta</span></div>
-                                <div class="price"><span>$25.00</span></div>
-                                <div><a href="#">REMOVE</a></div>
-                            </div>
-                            <div class="box cart-element-quantity">
-                                <span>2</span>
-                            </div>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="cart-checkout">
-                            <form action="utils/addToCart.php" method="post">    
-                                <!--<a class="btn btn-primary btn-l" target="__blank" href="checkout.php"></a>-->
-                                <input name="submit" type="submit" class="btn btn-primary btn-block" value="Proceed to Checkout">
-                            </form>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-</div>
+<?php 
+    if(isset($_SESSION['userId'])) {
+    
+    echo '
+    <div id="login_bar" style="text-align: right">                                               
+                <ul id="login_signup">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                            <i class="fas fa-lg fa-cart-plus"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">';
+                            
+    if(count($_SESSION['cart']) > 0) {
+        $subtotal = 0;
+
+        foreach($_SESSION['cart'] as $cart) {
+            $productprice = $cart['priceperunit'] * $cart['quantity'];
+            $subtotal += $productprice;
+            echo '
+                                <div class="cart-element">
+                                    <div class="box">
+                                        <img class="cart-img" src="'.$cart['picture'].'" class="product-img" alt=""/>
+                                    </div>
+                                    <div class="box cart-element-info">
+                                        <div class="name"><span>'.$cart['name'].'</span></div>
+                                        <div class="price"><span>$'.number_format($productprice, 2, '.', '').'</span></div>
+                                        <div><a href="#">REMOVE</a></div>
+                                    </div>
+                                    <div class="box cart-element-quantity">
+                                        <span>'.$cart['quantity'].'</span>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>';
+        }
+
+        echo '
+                                <div class="cart-element">
+                                    <div class="box cart-total-info">
+                                        <div class="name"><span>Subtotal:</span></div>
+                                        <div class="price"><span>$'.number_format($subtotal, 2, '.', '').'</span></div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>                        
+        
+                                <div class="cart-checkout">
+                                    <form action="utils/checkout.php" method="post"> 
+                                        <input name="submit" type="submit" class="btn btn-primary btn-block" value="Proceed to Checkout">
+                                    </form>
+                                </div>';
+                            
+    } else {
+        echo'                   <div class="cart-element">
+                                    <div class="box cart-element-info">
+                                        <div><span>The cart is empty</span></div>
+                                    </div>
+                                </div>';
+    }
+
+    echo '              </div>
+                    </li>
+                </ul>
+    </div>';
+
+    } 
+?>

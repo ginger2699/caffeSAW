@@ -1,7 +1,7 @@
 <?php
 try {
     session_start();
-
+    
     if(!isset($_POST['submit'])||!strlen($_POST['submit'])||!isset($_SESSION['userId'])){
         throw new Exception('invalidSubmit');
     }
@@ -12,78 +12,98 @@ try {
 
     $connection -> begin_transaction();
 
-        /*
-            1) get cart
-            2) add purchase 
-            3) add purchase details -> one row per get cart result
-            4) empty cart
-        */
-
     try {
 
         $subtotal = 0;
 
         foreach($_SESSION['cart'] as $cart) {
-            if ($cart['id'] === $_POST['productid']) {
-                $subtotal += $cart['priceperunit'] * $cart['quantity'];
-            }
+            $subtotal += $cart['priceperunit'] * $cart['quantity'];
         }
 
         // Create a prepared statement
-        $stmtGet = $connection -> stmt_init();
-        if(!$stmtGet){
+        $stmtPurchase = $connection -> stmt_init();
+        if(!$stmtPurchase){
             throw new Exception();
         }
 
-        $stmtGet -> prepare("SELECT productid, quantity, price FROM cart JOIN product ON productid = product.id WHERE userid = ?");
+        $stmtPurchase -> prepare("INSERT INTO purchase (user, subtotal, date) VALUES (?,?,?)");
 
         // Bind parameters
-        $stmtGet -> bind_param("i",$_SESSION['userId']);
+        $now = date("Y-m-d h:i:s");
+
+        $stmtPurchase -> bind_param("iss",$_SESSION['userId'],$subtotal,$now);
 
         // Execute query
-        $stmtGet -> execute();
-        if(!$stmtGet){
+        $stmtPurchase -> execute();
+        if(!$stmtPurchase){
             echo'error';
             die();
         }
 
         // Review results
-        $numOfRows = $results -> num_rows;
-    
-        if($numOfRows === 0) {
-            throw new Exception('EmptyCart');
-        }
-    
-        $subtotal = 0;
-        $queryDetails = 'INSERT INTO purchasedetail (product, purchase, quantity) VALUES ';
-
-        while($row = $results -> fetch_assoc()){
-            subtotal += $row['quantity'] * $row['price']
+        $affectedRows = $connection->affected_rows;
+        if($affectedRows <= 0) {
+            throw new Exception('insertFailed');
         }
 
-        // Close statement, commit transaction
-        $stmt -> close();
+        $newId = $connection->insert_id;
 
-        $mysqli->commit();
+        // Create a prepared statement (purchase details)
+        $stmtDetails = $connection -> stmt_init();
+        if(!$stmtPurchase){
+            throw new Exception();
+        }
+
+        $query = "INSERT INTO purchasedetail (product,purchase,quantity) VALUES";
+
+        $i = 0;
+        foreach($_SESSION['cart'] as $cart) {
+            $i += 1;
+            $query = $query.'('.$cart['id'].','.$newId.','.$cart['quantity'].')';
+
+            if(count($_SESSION['cart']) != $i) {
+                $query = $query.',';
+            }
+        }
+
+        $stmtDetails -> prepare($query);
+
+        // Execute query
+        $stmtDetails -> execute();
+        if(!$stmtDetails){
+            echo'error';
+            die();
+        }
+
+        // Review results
+        $affectedRows = $connection->affected_rows;
+        if($affectedRows <= 0 || $affectedRows < count($_SESSION['cart'])) {
+            throw new Exception('insertFailed');
+        }
+
+        // Close statement, commit transaction, empty cart
+        $stmtPurchase -> close();
+        $stmtDetails -> close();
+
+        $connection -> commit();
 
         $connection -> close();
 
-        header("Location: ../product.php?id=".$_POST['productid']."&success=".($affectedRows));
+        $_SESSION['cart']=array();
 
         exit();
 
     } catch(Exception $e) {
-        $mysqli->rollback();
-
-        throw $exception;
+        $connection->rollback();
+        throw $e;
     }
 } catch(Exception $e) {
-    else if ($e->getMessage()==='invalidSubmit') {
-        header("Location: ../product.php?id=".$_POST['productid']."&error=invalidSubmit");
+    if ($e->getMessage()==='invalidSubmit') {
+        echo $e;
         exit();
     }
     else {
-        header("Location: ../product.php?id=".$_POST['productid']."&error=unexpectedError");
+        echo $e;
         exit();
     }
 }
