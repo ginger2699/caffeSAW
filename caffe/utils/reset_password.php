@@ -109,7 +109,7 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../reset_password.php?success=tuttoappost");
+    header("Location: ../reset_password.php?success=yes");
     exit();
 }
 catch(Exception $e){
@@ -124,8 +124,8 @@ catch(Exception $e){
 
     }
     else{
-        //header("Location: ../reset_password.php?error=unexpectedError");
-        header("Location: ../reset_password.php?error=".$e->getMessage());
+        header("Location: ../reset_password.php?error=unexpectedError");
+        //header("Location: ../reset_password.php?error=".$e->getMessage());
         exit();
     }
 }

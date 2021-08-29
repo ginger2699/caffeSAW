@@ -10570,6 +10570,10 @@ p {
   border: 5px solid rgba(255, 255, 255, 0.2);
 }
 
+.trashcanicon{
+  color: #000;
+}
+
 .dot {
   width: 50px;
 }

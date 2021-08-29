@@ -59,7 +59,7 @@ try{
         throw new Exception();
     };
     
-    header("Location: ../login.php?success=loggedIn");
+    header("Location: ../show_profile.php?success=loggedIn");
     exit();
     
 

@@ -46,23 +46,10 @@
                             if(isset($_GET['success'])){
                                 if($_GET['success']=='yes'){
                                     echo'<div class="alert alert-success" role="alert">
-                                            Registration complete, please log in.
+                                            Email sent!
                                         </div>';
                                 }
-                                if($_GET['success']=='loggedIn'){
-                                if(isset($_SESSION['userId'])){ 
-                                    $id = $_SESSION['userId'];
 
-                                        echo'<div class="alert alert-success" role="alert">
-                                            You\'re logged in set!'.strval($id).'
-                                        </div>';
-                                }else{
-                                        echo'<div class="alert alert-success" role="alert">
-                                            You\'re logged in!
-                                        </div>';
-                                    }
-                                    
-                                }
                             }?> 
                             <form action="utils/reset_password.php" method="post">
                             <div class="form-group input-group">
