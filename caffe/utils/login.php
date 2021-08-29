@@ -49,6 +49,8 @@ try{
 
     session_start();
     $_SESSION['userId']=$row['id'];
+    
+    $_SESSION['cart']=array();
 
     // Close statement
     if(!($stmt -> close())){
