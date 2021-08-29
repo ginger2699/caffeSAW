@@ -59,20 +59,6 @@
                                             Password updated, please log in.
                                         </div>';
                                 }
-                                if($_GET['success']=='loggedIn'){
-                                if(isset($_SESSION['userId'])){ 
-                                    $id = $_SESSION['userId'];
-
-                                        echo'<div class="alert alert-success" role="alert">
-                                            You\'re logged in set!'.strval($id).'
-                                        </div>';
-                                }else{
-                                        echo'<div class="alert alert-success" role="alert">
-                                            You\'re logged in!
-                                        </div>';
-                                    }
-                                    
-                                }
                             }?> 
                             <form action="utils/login.php" method="post">
                             <div class="form-group input-group">

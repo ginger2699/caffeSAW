@@ -45,6 +45,13 @@
                                     </div>';
                             }
                         }
+                        if($_GET['success']=='loggedIn'){
+                          if(isset($_SESSION['userId'])){ 
+                                  echo'<div class="alert alert-success" role="alert">
+                                      You\'re logged in!
+                                  </div>';
+                          }
+                        }
                         require 'utils/connect_db.php';
                         $sql = "SELECT name, surname, email, phonenumber FROM usersInfo WHERE id =".$_SESSION['userId'];
                         $result = $connection->query($sql);
@@ -109,8 +116,6 @@
               <div class="card mb-3 profileCard">
                 <div class="card-body">
                     <h4>Your reviews!</h4>
-                    <div class="scrollbar" id="style-2">
-                        <div class="force-overflow">
                             <?php
                             $limit = 5;
                             if(isset($_GET['error'])){
@@ -126,10 +131,13 @@
                                 }
                             }  
                             require 'utils/connect_db.php';
-                            $sql = "SELECT productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
+                            $sql = "SELECT productsreview.id, productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
                             JOIN product ON productsreview.product=product.id WHERE user =".$_SESSION['userId']." LIMIT ".$limit;
                             $result = $connection->query($sql); 
                             if ($result->num_rows > 0) {
+                              echo'                    
+                                <div class="scrollbar" id="style-2">
+                                  <div class="force-overflow">';
                             // output data of each row
                                 while($row = $result->fetch_assoc()){
                                     echo'
@@ -143,25 +151,25 @@
                                     <div class="mt-2">
                                         <p class="comment-text">'.htmlspecialchars($row['review']).'</p>
                                     </div>
+                                      <a class="trashcanicon" href="utils/delete_review.php?id='.$row["id"].'"><i class="fas fa-trash"></i></a>
                                     </div>
                                     ';
                                 }
                             $connection->close();
+                            echo'
+                                    <div id="newReviews">
+                                      <button id = "reviewButton" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+                                    </div>
+                                  </div>
+                                </div>';
 
                             } 
                             else {
                                 $connection->close();
-                                header("Location: ../login.php");
-                                exit();
+                                echo '<h6 class="mb-0">You have not left a review yet.</h6>';
                             }
 
                             ?>
-                            <div id="newReviews">
-                            <button id = "reviewButton" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
-                            </div>
-                    </div>
-
-                </div>
             </div>
             </div>
         </div>

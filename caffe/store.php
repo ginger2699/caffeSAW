@@ -87,7 +87,7 @@
                     $result = $connection->query($sql);
                     if(!$result){
                         $connection->close();
-                        echo'Niente risultati!';
+                        echo '<h5 class="pb-3 mb-4 font-italic" style="color:white;">There are no results for this query.</h5>';
                     }else{
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
@@ -113,8 +113,7 @@
                     } 
                     else {
                         $connection->close();
-                        header("Location: ../index.php");
-                        exit();
+                        echo '<h5 class="pb-3 mb-4 font-italic" style="color:white;">There are no results for this query.</h5>';
                     }
                 }
                 ?>

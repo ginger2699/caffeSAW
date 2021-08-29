@@ -20,7 +20,7 @@ try{
     $limit = (int)$limit;
     $offsetR=(int)$_POST['offset'];
     $offsetR=$offsetR*$limit;
-    $sql = "SELECT productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
+    $sql = "SELECT productsreview.id, productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
     JOIN product ON productsreview.product=product.id WHERE user =? LIMIT ?,?";
 
     if(isset($_POST['prodId'])){
@@ -70,8 +70,13 @@ try{
         </div>
         <div class="mt-2">
             <p class="comment-text">'.htmlspecialchars($row['review']).'</p>
-        </div>
-        </div>
+        </div>';
+        if (isset($_SESSION['userId'])&&!isset($_POST['prodId'])){
+            echo'<a class="trashcanicon" href="utils/delete_review.php?id='.$row["id"].'"><i class="fas fa-trash"></i></a>
+            ';
+
+        }
+        echo'</div>
         ';
     }
     // Close statement
