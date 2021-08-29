@@ -41,30 +41,13 @@
                                             An unexpected error occured, please try again.
                                         </div>';
                                 }
-                                if($_GET['error']=='invalidCredentials'){
-                                    echo'<div class="alert alert-danger" role="alert">
-                                            Email or password not correct.
-                                        </div>';
-                                }
-                            }
-                            if(isset($_GET['success'])){
-                                if($_GET['success']=='yes'){
-                                    echo'<div class="alert alert-success" role="alert">
-                                            Registration complete, please log in.
-                                        </div>';
-                                }
-                                if($_GET['success']=='updated'){
-                                    echo'<div class="alert alert-success" role="alert">
-                                            Password updated, please log in.
-                                        </div>';
-                                }
                             }?>
                             <?php
                                 if(isset($_GET['id'])){
                                     echo'
                                         <!--<div class="d-flex justify-content-between"></div>-->
                                             <div class="product-details-container"> 
-                                                <span>Leave a Review!</span>
+                                                <span>Select the number of stars and leave a comment(optional)!</span>
                                             </div>
                                             <div class="product-actions-container">
                                                 <form action="utils/addReview.php" method="post">
@@ -74,7 +57,7 @@
                                                             <textarea name="description" type="text"></textarea>
                                                         </div>
                                                         <div class="rate">
-                                                            <input type="radio" id="star5" name="rate" value="5" />
+                                                            <input required type="radio" id="star5" name="rate" value="5" />
                                                             <label for="star5" title="text">5 stars</label>
                                                             <input type="radio" id="star4" name="rate" value="4" />
                                                             <label for="star4" title="text">4 stars</label>
@@ -90,6 +73,7 @@
                                                     </div>
                                                 </form>
                                             </div>
+                                            <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
                                         </div>
                                     ';
                                 }
@@ -99,7 +83,6 @@
                                     </div>';
                                 }
                             ?> 
-                            <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
                         </div>
                     </div>
                 </div>

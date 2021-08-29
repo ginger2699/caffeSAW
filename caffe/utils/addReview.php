@@ -17,7 +17,8 @@ try{
     }
     
     // Bind parameters
-    $stars = 1;
+    $stars = $_POST['rate'];
+    var_dump($stars);
     $currDate = date("Y-m-d");
     if(!($stmt -> bind_param("sssis",$_POST['productid'],$_SESSION['userId'],$_POST['description'], $stars ,$currDate))){
         throw new Exception("error2");
@@ -43,18 +44,11 @@ try{
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../product.php?error=emptyFields".'&id='.$_POST['productid']);
+        header("Location: ../leaveReview.php?error=emptyFields".'&id='.$_POST['productid']);
         exit();
-
-    }
-    if ($e->getMessage()==='invalidCredentials') {
-        header("Location: ../product.php?error=invalidCredentials".'&id='.$_POST['productid']);
-        exit();
-
     }
     else{
-        //header("Location: ../product.php?error=unexpectedError".'&id='.$_POST['productid']);
-        header("Location: ../store.php?error=".$e->getMessage());
+        header("Location: ../leaveReview.php?error=".'&id='.$_POST['productid'];
         exit();
     }
 }

@@ -113,33 +113,8 @@
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <div class="col-lg-6 menu-item filter-starters">
-              <img
-                src="assets/img/menu/lobster-bisque.jpg"
-                class="menu-img"
-                alt=""
-              />
-              <div class="menu-content">
-                <a href="#">Lobster Bisque</a><span>$5.95</span>
-              </div>
-              <div class="menu-ingredients">
-                Lorem, deren, trataro, filede, nerada
-              </div>
-              <div class="rate">
-                <input type="radio" id="star5" name="rate" value="5" />
-                <label for="star5" title="text">5 stars</label>
-                <input type="radio" id="star4" name="rate" value="4" />
-                <label for="star4" title="text">4 stars</label>
-                <input type="radio" id="star3" name="rate" value="3" />
-                <label for="star3" title="text">3 stars</label>
-                <input type="radio" id="star2" name="rate" value="2" />
-                <label for="star2" title="text">2 stars</label>
-                <input type="radio" id="star1" name="rate" value="1" />
-                <label for="star1" title="text">1 star</label>
-              </div>
-            </div>
             <?php
-              $sql = "SELECT dish, ingredients, price, filter FROM menuItems";
+              $sql = "SELECT dish, ingredients, price, filter, picture FROM menuItems";
               $result = $connection->query($sql);
               
               if ($result->num_rows > 0) {
@@ -147,7 +122,7 @@
                   echo'
                   <div class="col-lg-6 menu-item filter-'.$row["filter"].'">
                     <img
-                      src="assets/img/menu/bread-barrel.jpg"
+                      src="'.$row["picture"].'"
                       class="menu-img"
                       alt=""
                     />

@@ -45,11 +45,10 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+            <i class="fas fa-gem me-3"></i>Cat Cafè
           </h6>
           <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
+            Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.
           </p>
         </div>
         <!-- Grid column -->
@@ -82,16 +81,16 @@
             Useful links
           </h6>
           <p>
-            <a href="#!" class="text-reset">Pricing</a>
+            <a href="about.php" class="text-reset">Hours</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
+            <a href="index.php" class="text-reset">Home</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Orders</a>
+            <a href="registration.php" class="text-reset">Sign Up</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Help</a>
+            <a href="reset_password.php" class="text-reset">Forgot password?</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -102,13 +101,13 @@
           <h6 class="text-uppercase fw-bold mb-4">
             Contact
           </h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p><i class="fas fa-home me-3"></i> Genova, GE 16124, IT</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            catcafesaw@gmail.com
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i class="fas fa-phone me-3"></i> + 010 80 26 99</p>
+          <p><i class="fas fa-print me-3"></i> + 331 24 56 17</p>
         </div>
         <!-- Grid column -->
       </div>

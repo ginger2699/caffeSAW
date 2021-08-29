@@ -27,11 +27,7 @@
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
                     <img class="resize" src="assets/img/menu/lobster-bisque.jpg" alt="Insert your profile pic">
-                      <!--<div class="mt-3">
-                      <h4>John Doe</h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                    </div>-->
+                    <a class="trashcanicon" href="choose_profile_pic.php"><i class="fas fa-pencil-alt"></i> Change your profile pic </a>
                   </div>
                 </div>
               </div>
@@ -131,7 +127,7 @@
                                 }
                             }  
                             require 'utils/connect_db.php';
-                            $sql = "SELECT productsreview.id, productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
+                            $sql = "SELECT productsreview.id, productsreview.stars, productsreview.review, productsreview.date, product.picture, product.name FROM productsreview 
                             JOIN product ON productsreview.product=product.id WHERE user =".$_SESSION['userId']." LIMIT ".$limit;
                             $result = $connection->query($sql); 
                             if ($result->num_rows > 0) {
@@ -142,10 +138,16 @@
                                 while($row = $result->fetch_assoc()){
                                     echo'
                                     <div class="review mt-4">
-                                    <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
+                                    <div class="d-flex flex-row comment-user"><img class="rounded" src="'.$row['picture'].'" width="40">
                                         <div class="ml-2">
                                             <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.$row['name'].'</span><span>'.str_repeat('&nbsp;', 5).'</span><span class="dot"></span><span class="date">'.$row['date'].'</span></div>
-                                            <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                                            <div class="rating">';
+
+                                            for ($i = 1; $i <= $row["stars"]; $i++) {
+                                                echo '<i class="fa fa-star"></i>';
+                                            }
+                                            echo'
+                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-2">

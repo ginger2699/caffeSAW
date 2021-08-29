@@ -84,15 +84,15 @@
                             </ul>
                             <p class="address mb-5">
                                 <em>
-                                    <strong>1116 Orchard Street</strong>
+                                    <strong>Vico Chiuso dei Gatti</strong>
                                     <br />
-                                    Golden Valley, Minnesota
+                                    16124 Genova GE
                                 </em>
                             </p>
                             <p class="mb-0">
                                 <small><em>Call Anytime</em></small>
                                 <br />
-                                (317) 585-8468
+                                + 331 24 56 17
                             </p>
                         </div>
                     </div>
