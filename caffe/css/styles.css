@@ -10330,6 +10330,11 @@ p {
   height: 46px;
   padding: 0 10px;
 }
+.rate label input {
+  top: auto;
+  position:absolute;
+  left: -9999px;
+ }
 .rate:not(:checked) > input {
   position:absolute;
   top:-9999px;
@@ -10623,7 +10628,12 @@ p {
   float: inline-end;
   border: 5px solid rgba(255, 255, 255, 0.2);
 }
-
+.profile-img{
+    width: 100px;
+    border-radius: 80%;
+    float: left;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+}
 .trashcanicon{
   color: #000;
 }
