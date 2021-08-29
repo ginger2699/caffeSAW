@@ -54,10 +54,6 @@
                                 </div>';
                             break;
                         case 'insertFailed':
-                            echo'<div class="alert alert-danger" role="alert">
-                                    The desired product is already in your cart.
-                                </div>';
-                            break;
                         case 'invalidSubmit':
                         default:
                             echo'<div class="alert alert-danger" role="alert">
@@ -121,6 +117,9 @@
                                             <form action="utils/addToCart.php" method="post">
                                                 <div class="product-actions-container"> 
                                                     <input name="productid" type="number" value="'.$product["id"].'" style="display: none;">
+                                                    <input name="name" type="text" value="'.$product["name"].'" style="display: none;">
+                                                    <input name="price" type="number" value="'.$product["price"].'" style="display: none;">
+                                                    <input name="picture" type="text" value="'.$product["picture"].'" style="display: none;">
                                                     <input name="quantity" type="number" value="1"  min="1" max="100">
                                                     <input name="submit" type="submit" class="btn btn-primary btn-block" value="Add to cart">
                                                     <i class="fas fa-lg fa-cart-plus"></i>

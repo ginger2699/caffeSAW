@@ -74,7 +74,7 @@
     </div>
 </nav>
 <!-- Cart -->
-<!-- SE LA SESSION NON HA USER IL CARRELLO NON COMPARE? GESTIRE UN CARRELLO INTERNO? -->
+<!-- IF NOT LOGGED IN -->
 <div id="login_bar" style="text-align: right">                                               
             <ul id="login_signup">
                 <li class="nav-item dropdown">

@@ -10,43 +10,37 @@ try {
         throw new Exception('invalidSubmit');
     }
 
-    require 'connect_db.php';
+    //controlla che non ci sia già
 
-    // Create a prepared statement
-    $stmt = $connection -> stmt_init();
-
+    $alreadyInCart = false;
     
-    if(!$stmt){
-        throw new Exception();
+    foreach($_SESSION['cart'] as $cart) {
+        if ($cart['id'] === $_POST['productid']) {
+            $cart['quantity'] += $_POST['quantity'];
+            $alreadyInCart = true;
+        }
     }
 
-    $stmt -> prepare("INSERT INTO cart (userid,productid,quantity) VALUES (?,?,?)");
+    if(!$alreadyInCart) {
+        $product = array(
+            'id' => $_POST['productid'],
+            'name' => $_POST['name'],
+            'picture' => $_POST['picture'],
+            'quantity' => $_POST['quantity'],
+            'priceperunit' => $_POST['price']
+        );
 
-    // Bind parameters
-    $stmt -> bind_param("iii",$_SESSION['userId'],$_POST['productid'],$_POST['quantity']);
+        array_push($_SESSION['cart'],$product);
 
-    // Execute query
-    $stmt -> execute();
-    if(!$stmt){
-        echo'error';
-        die();
+        header("Location: ../product.php?id=".$_POST['productid']."&success=insert");
+        exit();
+
+    } else {
+
+        header("Location: ../product.php?id=".$_POST['productid']."&success=update");
+        exit();
     }
 
-    // Review results
-    $affectedRows = $connection->affected_rows;
-    if($affectedRows <= 0) {
-        throw new Exception('insertFailed');
-    }
-
-
-    // Close statement
-    $stmt -> close();
-    $connection -> close();
-
-    //header("Location: ../product.php?id=".$_POST['productid']."success=addedtocart");
-    header("Location: ../product.php?id=".$_POST['productid']."&success=".($affectedRows));
-
-    exit();
 } catch(Exception $e) {
     if ($e->getMessage()==='emptyFields') {
         header("Location: ../product.php?id=".$_POST['productid']."&error=emptyFields");
@@ -54,10 +48,6 @@ try {
     }
     else if ($e->getMessage()==='invalidSubmit') {
         header("Location: ../product.php?id=".$_POST['productid']."&error=invalidSubmit");
-        exit();
-    }
-    else if ($e->getMessage()==='insertFailed') {
-        header("Location: ../product.php?id=".$_POST['productid']."&error=insertFailed");
         exit();
     }
     else {

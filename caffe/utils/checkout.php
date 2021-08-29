@@ -21,6 +21,14 @@ try {
 
     try {
 
+        $subtotal = 0;
+
+        foreach($_SESSION['cart'] as $cart) {
+            if ($cart['id'] === $_POST['productid']) {
+                $subtotal += $cart['priceperunit'] * $cart['quantity'];
+            }
+        }
+
         // Create a prepared statement
         $stmtGet = $connection -> stmt_init();
         if(!$stmtGet){
@@ -54,7 +62,7 @@ try {
         }
 
         // Close statement, commit transaction
-        $stmtGet -> close();
+        $stmt -> close();
 
         $mysqli->commit();
 
