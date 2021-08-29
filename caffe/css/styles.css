@@ -10561,6 +10561,55 @@ p {
   background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
+/* Cart Section*/
+
+.cart-element {
+  display: flex; 
+  align-items: center; 
+  padding: 0px 10px; 
+  text-transform: none !important;
+}
+
+.cart-element .box {
+  margin: 0px 5px;
+}
+
+.cart-element-info {
+  display: flex;
+  flex-direction: column; 
+  flex-grow: 2; 
+  justify-content: space-around; 
+  align-self: stretch; 
+}
+
+.cart-element-info .name {
+  font-weight: 700;
+}
+
+.cart-element-info .price {
+  font-weight: 600;
+}
+
+.cart-element-quantity {
+  line-height: 40px; 
+  text-align: center; 
+  width: 40px; 
+  height: 40px; 
+}
+
+.cart-img {
+  max-width:80px; border-radius: 20px
+}
+
+.cart-element-info span {
+  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.cart-checkout {
+  display: flex;
+  justify-content: center;
+}
+
 /* Profile Section */
 .resize{
   width: 100px; 

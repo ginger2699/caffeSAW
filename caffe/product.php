@@ -38,35 +38,34 @@
       <!-- ======= Store Section ======= -->
 
         <?php
-            
-            if(isset($_GET['success'])) {
-                echo'<div class="alert alert-success" role="alert">
-                    The product it\'s been added to your cart!
-                </div>';
-            }
-
-            if(isset($_GET['error'])) {
-                switch($_GET['error']) {
-                    case 'emptyFields':
-                        echo'<div class="alert alert-danger" role="alert">
-                                Please select the amount of the desired product.
-                            </div>';
-                        break;
-                    case 'insertFailed':
-                        echo'<div class="alert alert-danger" role="alert">
-                                The desired product is already in your cart.
-                            </div>';
-                        break;
-                    case 'invalidSubmit':
-                    default:
-                        echo'<div class="alert alert-danger" role="alert">
-                                An unexpected error occured, please try again.
-                            </div>';
-                        break;
-                }
-            }
-
             if(isset($_GET['id']) && is_numeric($_GET['id'])){
+
+                if(isset($_GET['success'])) {
+                    echo'<div class="alert alert-success" role="alert">
+                        The product it\'s been added to your cart!
+                    </div>';
+                }
+    
+                if(isset($_GET['error'])) {
+                    switch($_GET['error']) {
+                        case 'emptyFields':
+                            echo'<div class="alert alert-danger" role="alert">
+                                    Please select the amount of the desired product.
+                                </div>';
+                            break;
+                        case 'insertFailed':
+                            echo'<div class="alert alert-danger" role="alert">
+                                    The desired product is already in your cart.
+                                </div>';
+                            break;
+                        case 'invalidSubmit':
+                        default:
+                            echo'<div class="alert alert-danger" role="alert">
+                                    An unexpected error occured, please try again.
+                                </div>';
+                            break;
+                    }
+                }
 
                 require 'utils/connect_db.php';
     
@@ -227,7 +226,11 @@
                 };
 
             } else {
-                header("Location: index.php");
+                //TODO : verificare, c'è bisognodi header?
+                //header("Location: index.php");
+                echo'<div class="alert alert-danger" role="alert">
+                    An unexpected error occured, please try again.
+                </div>';
                 exit();
             }
             

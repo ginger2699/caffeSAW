@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<div id="login_bar" style="text-align: right">                                               
-            <ul id="login_signup">
-                <li><a href="login.php" id="login_link">Login </a></li>
-                <!-- <li><a href="#" id="sign_link">SignUp </a></li> -->
-            </ul>
-</div>
 <h1 class="site-heading text-center text-white d-none d-lg-block">
     <span class="site-heading-upper text-primary mb-3">PURRfect Coffee</span>
     <span class="site-heading-lower">Our cat café in the middle of the city</span>
@@ -71,11 +65,51 @@
                     }
                 }
                 ?>
-                <form action="store.php" class="form-inline my-2 ml-4 my-lg-0" method="GET">
-                    <input class="form-control mr-sm-2" name="searchbar" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline my-2 ml-4 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </ul>
         </div>
     </div>
 </nav>
+<!-- Cart -->
+<!-- SE LA SESSION NON HA USER IL CARRELLO NON COMPARE? GESTIRE UN CARRELLO INTERNO? -->
+<div id="login_bar" style="text-align: right">                                               
+            <ul id="login_signup">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                        <i class="fas fa-lg fa-cart-plus"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <!-- IF EMPYT -->
+                        <!-- SHOW CART CONTENT --->
+                        <!--
+                        <a class="dropdown-item" href="show_profile.php">View Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="utils/logout.php">Logout</a>
+                        -->
+                        <div class="cart-element">
+                            <div class="box">
+                                <img class="cart-img" src="assets/img/products/blackTshirt.jpg" class="product-img" alt=""/>
+                            </div>
+                            <div class="box cart-element-info">
+                                <div class="name"><span>Black Meowglietta</span></div>
+                                <div class="price"><span>$25.00</span></div>
+                                <div><a href="#">REMOVE</a></div>
+                            </div>
+                            <div class="box cart-element-quantity">
+                                <span>2</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="cart-checkout">
+                            <form action="utils/addToCart.php" method="post">    
+                                <!--<a class="btn btn-primary btn-l" target="__blank" href="checkout.php"></a>-->
+                                <input name="submit" type="submit" class="btn btn-primary btn-block" value="Proceed to Checkout">
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+</div>
