@@ -143,7 +143,7 @@
                         if ($resultReviews !== false && $resultReviews->num_rows > 0) { 
 
                             echo '
-                            <div class="scrollbar product-details-box prod" id="style-2">
+                            <div class="scrollbar product-reviews-box rounded prod" id="style-2">
                                 <div class="force-overflow">
                             <!--<div class="product-reviews-box bg-faded rounded"> 
 
@@ -178,7 +178,8 @@
                             echo '
                                     <div id="newReviews">
                                         <input id="productIdbButtonProd" type="number" value="'.$product["id"].'" style="display: none;">
-                                        <button id = "reviewButtonProd" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+                                        <button id ="reviewButtonProd" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>
+                                        <br><br>  
                                     </div>
                                 </div>
 

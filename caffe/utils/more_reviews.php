@@ -102,7 +102,7 @@ try{
 }
 catch (Exception $e){
     if ($e->getMessage()==='NoMoreReviews') {
-        echo'All reviews already displayed.';
+        echo'All reviews already displayed.<br><br>';
         exit();
 
     }

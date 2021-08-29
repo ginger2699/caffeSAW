@@ -84,7 +84,6 @@
                         $search = $connection -> real_escape_string($_GET['searchbar']);
                         $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id WHERE p.name LIKE '%$search%' OR p.description LIKE '%$search%'";
                     }
-                    echo $sql;
                     $result = $connection->query($sql);
                     if(!$result){
                         $connection->close();
