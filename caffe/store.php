@@ -102,7 +102,7 @@
                                     />
                                 </div>
                                 <div class="store-content">
-                                    <a href="product.php?id='.$row["id"].'">'.$row["name"].'</a><span>$'.$row["price"].'</span>
+                                    <a href="product.php?id='.$row["id"].'">'.$row["name"].'</a><span>$'.number_format($row["price"], 2, '.', '').'</span>
                                 </div>
                             </div>
                         </div>';
