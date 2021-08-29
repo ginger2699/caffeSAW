@@ -51,9 +51,6 @@
                             <?php
                                 require 'utils/connect_db.php';
                                 $sql = "SELECT name FROM productsCategory";
-                                if(isset($_GET['searchbar'])){
-                                    $sql = "SELECT name FROM productsCategory WHERE ";
-                                }
                                 $result = $connection->query($sql);
                                 
                                 if ($result->num_rows > 0) {
@@ -81,8 +78,18 @@
             >
                 <?php
                     $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id";
+                    if(isset($_GET['searchbar'])){
+                        echo '<h5 class="pb-3 mb-4 font-italic" style="color:white;">
+                        I risultati per \''.htmlspecialchars($_GET['searchbar'])."' sono <a href=\"store.php\"><i class=\"fas fa-times-circle\"></i></a> :</h5>"; 
+                        $search = $connection -> real_escape_string($_GET['searchbar']);
+                        $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id WHERE p.name LIKE '%$search%' OR p.description LIKE '%$search%'";
+                    }
+                    echo $sql;
                     $result = $connection->query($sql);
-                    
+                    if(!$result){
+                        $connection->close();
+                        echo'Niente risultati!';
+                    }else{
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
                         echo '
@@ -110,6 +117,7 @@
                         header("Location: ../index.php");
                         exit();
                     }
+                }
                 ?>
             </div>
         
