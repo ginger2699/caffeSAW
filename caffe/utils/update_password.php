@@ -45,13 +45,13 @@ try{
     if($row)
     {
     
-        if(!($stmt -> prepare("UPDATE usersInfo SET password = ? WHERE id = ?"))){
+        if(!($stmt -> prepare("UPDATE usersInfo SET password = ? WHERE email = ?"))){
             throw new Exception("error1");
         }
         $hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
         
           // Bind parameters
-        if(!($stmt -> bind_param("ss",$hash,$_SESSION['userId']))){
+        if(!($stmt -> bind_param("ss",$hash,$_POST['email']))){
             throw new Exception("error2");
         }
         
