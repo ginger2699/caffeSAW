@@ -3,10 +3,7 @@ session_start();
 try{
 
     if(!isset($_POST['offset'])){
-        throw new Exception('1');
-    }
-    if(!isset($_SESSION['userId']) && !isset($_POST['prodId'])){
-        throw new Exception('1b');
+        throw new Exception();
     }
     $limit = 5;
     require 'connect_db.php';
@@ -15,42 +12,31 @@ try{
     // Create a prepared statement
     $stmt = $connection -> stmt_init();
     if(!$stmt){
-        throw new Exception('2');
+        throw new Exception();
     }
     $limit = (int)$limit;
     $offsetR=(int)$_POST['offset'];
     $offsetR=$offsetR*$limit;
-    $sql = "SELECT productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
+    $sql = "SELECT productsreview.stars, productsreview.review, productsreview.date, usersinfo.name FROM productsreview 
     JOIN product ON productsreview.product=product.id WHERE user =? LIMIT ?,?";
 
-    if(isset($_POST['prodId'])){
-        $sql  = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersInfo AS u ON user = u.id WHERE product = ? LIMIT ?,?';
-    }
-
     if(!($stmt -> prepare($sql))){
-        throw new Exception('3');
+        throw new Exception();
     }
 
     // Bind parameters
-    if(isset($_POST['prodId'])){
-        if(!($stmt -> bind_param("sss",$_POST['prodId'],$offsetR,$limit))){
-            throw new Exception('4');
-        }
-    }
-    else if(isset($_SESSION['userId'])){
-        if(!($stmt -> bind_param("sss",$_SESSION['userId'],$offsetR,$limit))){
-            throw new Exception('5');
-        }
+    if(!($stmt -> bind_param("sss",$_SESSION['userId'],$offsetR,$limit))){
+        throw new Exception();
     }
 
 
     // Execute query
     if(!($stmt -> execute())){
-        throw new Exception('6');
+        throw new Exception();
     }
 
     if(!($results = $stmt -> get_result())){
-        throw new Exception('7');
+        throw new Exception();
     }
 
     $numOfRows = $results -> num_rows;
@@ -76,28 +62,15 @@ try{
     }
     // Close statement
     if(!($stmt -> close())){
-        throw new Exception('8');
+        throw new Exception();
     }
 
     if(!($connection -> close())){
-        throw new Exception('9');
+        throw new Exception();
     }
-
-    // Bind parameters
-    if(isset($_POST['prodId'])){
-        echo'<div id="newReviews">
-        <input id="productIdbButtonProd" type="number" value="'.htmlspecialchars($_POST['prodId']).'" style="display: none;">
-        <button id = "reviewButtonProd" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
-        </div>';
-    }
-    else if(isset($_SESSION['userId'])){
-        echo'<div id="newReviews">
-        <button id = "reviewButton" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
-        </div>';
-    }
-
-
-
+    echo'<div id="newReviews">
+    <button id = "reviewButton" type="submit" value = "'.((int)$_POST['offset']+1).'" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+    </div>';
 
 }
 catch (Exception $e){
@@ -106,13 +79,8 @@ catch (Exception $e){
         exit();
 
     }
-    else{
-        //header("Location: ../reset_password.php?error=unexpectedError");
-        echo $e->getMessage();
-        exit();
-    }
-   /* else {
+    else {
         echo'Unexpected error, please try again.';
         exit();
-    }*/
+    }
 }

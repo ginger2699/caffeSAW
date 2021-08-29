@@ -10531,7 +10531,7 @@ p {
 .product-details-box .product-details-container .product-actions-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -10549,6 +10549,10 @@ p {
 .product-reviews-box .product-reviews-container {
   max-width: 500px;
   padding: 0 3rem !important;
+}
+
+.prod {
+  background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* Profile Section */

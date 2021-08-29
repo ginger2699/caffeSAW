@@ -103,13 +103,12 @@
                 if ($results->num_rows > 0) { 
                     while($product = $results->fetch_assoc()){
 
-
                         echo '
                         <div class="product-wrapper">
-                            <div class="product-image-box flex-auto"> 
-                                <img src="'.$product["picture"].'" class="product-img flex-auto" alt=""/>
+                            <div class="product-image-box"> 
+                                <img src="'.$product["picture"].'" class="product-img" alt=""/>
                             </div>
-                            <div class="product-info-box flex-auto"> 
+                            <div class="product-info-box"> 
                                 <div class="product-details-box bg-faded rounded p-5"> 
 
                                     <div class="product-details-container">
@@ -128,42 +127,27 @@
                                                     <i class="fas fa-lg fa-cart-plus"></i>
                                                 </div>
                                             </form>
+                                            <div> 
+                                                <a href="#">Leave a Review!</a>
+                                            </div>
                                         </div>
-        
-                                    </div>
-                                </div>
-                                <div class="product-details-box bg-faded rounded p-5"> 
-
-                                    <div class="product-details-container">
-                                        <div class="product-name-container"> 
-                                            <span>Leave a Review!</span>
-                                        </div>
-                                        <div class="product-actions-container">
-                                            <form action="utils/addReview.php" method="post">
-                                                <div class="product-actions-container"> 
-                                                    <input name="productid" type="number" value="'.$product["id"].'" style="display: none;">
-                                                    <textarea name="description" type="text"></textarea>
-                                                    <input name="submit" type="submit" class="btn btn-primary btn-block" value="Send Review">
-                                                    <i class="fas fa-lg fa-pen-square"></i>
-                                                </div>
-                                            </form>
-                                        </div>
-        
                                     </div>
                                 </div>
                         ';
 
                         //TODO : AGGIUNGERE IMMAGINE UTENTE
-                        $queryReviews = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersInfo AS u ON user = u.id WHERE product = '.$product["id"].' LIMIT 5';
+                        $limit=5;
+                        $queryReviews = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersInfo AS u ON user = u.id WHERE product = '.$product["id"].' LIMIT '.$limit;
                         $resultReviews = $connection->query($queryReviews);
-                        echo $resultReviews->num_rows;
 
                         if ($resultReviews !== false && $resultReviews->num_rows > 0) { 
 
                             echo '
-                            <div class="product-reviews-box bg-faded rounded"> 
+                            <div class="scrollbar product-details-box prod" id="style-2">
+                                <div class="force-overflow">
+                            <!--<div class="product-reviews-box bg-faded rounded"> 
 
-                                <div class="overflow-auto product-reviews-container">
+                                <div class="overflow-auto product-reviews-container">-->
                             ';
 
                             while($review = $resultReviews->fetch_assoc()){ 
@@ -190,12 +174,12 @@
                                     </div>
                                 ';
                             }
-                            echo'<div id="newReviews">
-                            <input id="productIdbButtonProd" type="number" value="'.$product["id"].'" style="display: none;">
-                            <button id = "reviewButtonProd" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
-                            </div>';
                             
                             echo '
+                                    <div id="newReviews">
+                                        <input id="productIdbButtonProd" type="number" value="'.$product["id"].'" style="display: none;">
+                                        <button id = "reviewButtonProd" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>  
+                                    </div>
                                 </div>
 
                             </div>
@@ -207,6 +191,26 @@
 
                         </div>
                         ';
+                        /*echo '
+                                <!--<div class="product-details-box bg-faded rounded p-5"> 
+
+                                    <div class="product-details-container">
+                                        <div class="product-name-container"> 
+                                            <span>Leave a Review!</span>
+                                        </div>
+                                        <div class="product-actions-container">
+                                            <form action="utils/addReview.php" method="post">
+                                                <div class="product-actions-container"> 
+                                                    <input name="productid" type="number" value="'.$product["id"].'" style="display: none;">
+                                                    <textarea name="description" type="text"></textarea>
+                                                    <input name="submit" type="submit" class="btn btn-primary btn-block" value="Send Review">
+                                                    <i class="fas fa-lg fa-pen-square"></i>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div> -->
+                        ';*/
 
                     }
                 }
