@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2021 at 12:54 PM
+-- Generation Time: Aug 30, 2021 at 05:50 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -37,11 +37,11 @@ CREATE TABLE `avatar` (
 --
 
 INSERT INTO `avatar` (`id`, `path`) VALUES
-(1, 'assets/img/avatar/cat1.jpg'),
-(2, 'assets/img/avatar/cat2.jpg'),
-(3, 'assets/img/avatar/cat3.jpg'),
-(4, 'assets/img/avatar/cat4.jpg'),
-(5, 'assets/img/avatar/cat5.jpg');
+(1, '../assets/img/avatar/cat1.jpg'),
+(2, '../assets/img/avatar/cat2.jpg'),
+(3, '../assets/img/avatar/cat3.jpg'),
+(4, '../assets/img/avatar/cat4.jpg'),
+(5, '../assets/img/avatar/cat5.jpg');
 
 -- --------------------------------------------------------
 
@@ -83,10 +83,10 @@ CREATE TABLE `menuitems` (
 --
 
 INSERT INTO `menuitems` (`id`, `dish`, `ingredients`, `price`, `filter`, `picture`) VALUES
-(1, 'Mozzarella Stick', 'Breadcrumbs, mozzarella, olive oil', '4.95', 'Starters', 'assets/img/menu/mozzarella.jpg'),
-(2, 'Greek Salad', 'Fresh spinach, crisp romaine, tomatoes, and Greek olives', '9.95', 'Salads', 'assets/img/menu/greek-salad.jpg'),
-(3, 'Classic cake', 'Slice of cake topped with whipped cream and strawberries', '3.50', 'Specialty', 'assets/img/menu/cake.jpg'),
-(4, 'Lobster Roll', 'Lobsters,tortilla,carrots and parmesean', '8.90', 'Starters', 'assets/img/menu/lobster-roll.jpg');
+(1, 'Mozzarella Stick', 'Breadcrumbs, mozzarella, olive oil', '4.95', 'Starters', '../assets/img/menu/mozzarella.jpg'),
+(2, 'Greek Salad', 'Fresh spinach, crisp romaine, tomatoes, and Greek olives', '9.95', 'Salads', '../assets/img/menu/greek-salad.jpg'),
+(3, 'Classic cake', 'Slice of cake topped with whipped cream and strawberries', '3.50', 'Specialty', '../assets/img/menu/cake.jpg'),
+(4, 'Lobster Roll', 'Lobsters,tortilla,carrots and parmesean', '8.90', 'Starters', '../assets/img/menu/lobster-roll.jpg');
 
 -- --------------------------------------------------------
 
@@ -108,10 +108,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `price`, `category`, `picture`) VALUES
-(1, 'Black Meowglietta', 'A 100% organic cotton T-Shirt for black cats and puns lovers', 25.00, 1, 'assets/img/products/blackTshirt.jpg'),
-(2, 'White Cat T-Shirt', 'A 100% organic cotton T-Shirt for all cat people', 25.00, 1, 'assets/img/products/whiteTshirt.jpg'),
-(3, 'Coffurr Pin', 'We usually do not want fur in our coffee, this pin is an exception', 4.20, 2, 'assets/img/products/catPin.jpg'),
-(4, 'Cat Paw Mug', 'You can exclusively drink milk out of this', 14.90, 3, 'assets/img/products/pawMug.jpg');
+(1, 'Black Meowglietta', 'A 100% organic cotton T-Shirt for black cats and puns lovers', 25.00, 1, '../assets/img/products/blackTshirt.jpg'),
+(2, 'White Cat T-Shirt', 'A 100% organic cotton T-Shirt for all cat people', 25.00, 1, '../assets/img/products/whiteTshirt.jpg'),
+(3, 'Coffurr Pin', 'We usually do not want fur in our coffee, this pin is an exception', 4.20, 2, '../assets/img/products/catPin.jpg'),
+(4, 'Cat Paw Mug', 'You can exclusively drink milk out of this', 14.90, 3, '../assets/img/products/pawMug.jpg');
 
 -- --------------------------------------------------------
 
@@ -283,7 +283,7 @@ INSERT INTO `usersinfo` (`id`, `name`, `surname`, `email`, `phonenumber`, `path`
 (5, 'michele', 'prova', 'aa@a.it', '', 1, '$2y$10$zqgmUG0Op.FT6CbCDot/XOwXNw9hWyrRGso.F6H1NQZlVm/pd9nAy'),
 (6, 'prova finale', 'dkfjskjd', 'ciao@a.itjtg', '3312348187', 1, '$2y$10$9R2vrn1rA4uA6j1SowQrSe/1xxs7rlQ5GlvlQi63NtUtSOuz0ynuW'),
 (7, 'Michele', 'Ciao', 'ghirardellim2@gmail.com', '', 1, '$2y$10$QILZ9D0PvwH8D/4dGVng2eIcS7L6zFGgQq3zvLemTffzJRxbH1f3u'),
-(8, 'Ce', 'Prova', 'cnicora@virgilio.it', '1223423', 1, '$2y$10$PPgZQwOb2blFwNCgd/U/POPLE3BAx0uPCUhINkGm2kcud0861Xd46');
+(8, 'Ce', 'Prova', 'cnicora@virgilio.it', '1223423', 3, '$2y$10$PPgZQwOb2blFwNCgd/U/POPLE3BAx0uPCUhINkGm2kcud0861Xd46');
 
 --
 -- Indexes for dumped tables
