@@ -25,11 +25,11 @@ require 'connect_db.php';
 // Create a prepared statement
 $stmt = $connection -> stmt_init();
 if(!$stmt){
-    throw new Exception();
+    throw new Exception('1');
 }
 
-if(!($stmt -> prepare("INSERT INTO usersInfo VALUES (DEFAULT,?,?,?,?,?)"))){
-    throw new Exception();
+if(!($stmt -> prepare("INSERT INTO usersInfo VALUES (DEFAULT,?,?,?,?,DEFAULT,?)"))){
+    throw new Exception('2');
 }
 
 //hash password
@@ -37,21 +37,21 @@ $hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
   // Bind parameters
 if(!($stmt -> bind_param("sssss", $_POST['firstname'],$_POST['lastname'],$_POST['email'],$_POST['phonenumber'],$hash))){
-    throw new Exception();
+    throw new Exception('3');
 }
 
   // Execute query
 if(!($stmt -> execute())){
-    throw new Exception();
+    throw new Exception('4');
 }
 
 // Close statement
 if(!($stmt -> close())){
-    throw new Exception();
+    throw new Exception('5');
 }
 
 if(!($connection -> close())){
-    throw new Exception();
+    throw new Exception('6');
 }
 
 header("Location: ../html/login.php?success=yes");
@@ -72,7 +72,7 @@ catch (Exception $e){
         exit();
     }
     else {
-        header("Location: ../html/registration.php?error=unexpectedError");
+        header("Location: ../html/registration.php?error=unexpectedError".$e->getMessage());
         exit();
     }
 }
