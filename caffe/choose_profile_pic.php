@@ -47,22 +47,40 @@
             data-aos-delay="200"
           >
             <?php
-            require 'utils/connect_db.php';
-              $sql = "SELECT path FROM avatar";
+              if(isset($_GET['error'])){
+                  if($_GET['error']=='emptyFields'){
+                      echo'<div class="alert alert-danger" role="alert">
+                              Please fill in all fields?
+                          </div>';
+                  }
+                  if($_GET['error']=='unexpectedError'){
+                      echo'<div class="alert alert-danger" role="alert">
+                              An unexpected error occured, please try again.
+                          </div>';
+                  }
+              }
+              require 'utils/connect_db.php';
+              $sql = "SELECT * FROM avatar";
               $result = $connection->query($sql);
-              
+              echo'<form action="utils/choose_profile_pic.php" method="post">';
               if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()){
                   echo'
-                  <div class="col-lg-6 menu-item">
-                    <img
-                      src="'.$row["path"].'"
-                      class="profile-img"
-                      alt=""
-                    />
+                  <div class="col-lg-3 menu-item">
+                      <input type="radio" id="'.$row["id"].'" name="profile_pic" value="'.$row["id"].'">
+                      <label for="'.$row["id"].'"><img src="'.$row["path"].'" class="profile-img" alt=""></label><br>
                   </div>
                   ';
                 }
+                echo'
+          </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                    <input type="submit" name="submit" class="btn btn-primary btn-block" value="Choose this picture!">
+                    </div>
+                  </div>
+                </form>
+                ';
           
               $connection->close();
 

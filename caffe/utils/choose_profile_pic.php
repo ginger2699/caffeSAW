@@ -1,7 +1,7 @@
 <?php
 try{
     session_start();
-    if(!(isset($_POST['description'])) || (!isset($_SESSION['userId'])) || (!isset($_POST['productid']))){
+    if(!(isset($_POST['profile_pic'])) || (!isset($_SESSION['userId'])) || (!isset($_POST['submit']))){
         throw new Exception('emptyFields');
     }
 
@@ -12,15 +12,12 @@ try{
         throw new Exception();
     }
 
-    if(!($stmt -> prepare("INSERT INTO productsreview VALUES (DEFAULT,?,?,?,?,?)"))){
+    if(!($stmt -> prepare("UPDATE usersInfo SET path = ? WHERE id = ?"))){
         throw new Exception("error1");
     }
     
     // Bind parameters
-    $stars = $_POST['rate'];
-    var_dump($stars);
-    $currDate = date("Y-m-d");
-    if(!($stmt -> bind_param("sssis",$_POST['productid'],$_SESSION['userId'],$_POST['description'], $stars ,$currDate))){
+    if(!($stmt -> bind_param("is",$_POST['profile_pic'],$_SESSION['userId']))){
         throw new Exception("error2");
     }
     
@@ -39,16 +36,16 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../product.php?id=".$_POST['productid']);
+    header("Location: ../show_profile.php?success=profile");
     exit();
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../leaveReview.php?error=emptyFields".'&id='.$_POST['productid']);
+        header("Location: ../choose_profile_pic.php?error=emptyFields");
         exit();
     }
     else{
-        header("Location: ../leaveReview.php?error=".'&id='.$_POST['productid']);
+        header("Location: ../choose_profile_pic.php?error=unexpectedError");
         exit();
     }
 }

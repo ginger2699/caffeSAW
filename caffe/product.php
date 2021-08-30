@@ -140,7 +140,7 @@
 
                         //TODO : AGGIUNGERE IMMAGINE UTENTE
                         $limit=5;
-                        $queryReviews = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersInfo AS u ON user = u.id WHERE product = '.$product["id"].' LIMIT '.$limit;
+                        $queryReviews = 'SELECT p.id, review, stars, date, u.name, a.path FROM productsReview as p JOIN usersInfo AS u ON user = u.id JOIN avatar AS a ON u.path=a.id WHERE product = '.$product["id"].' LIMIT '.$limit;
                         $resultReviews = $connection->query($queryReviews);
 
                         if ($resultReviews !== false && $resultReviews->num_rows > 0) { 
@@ -159,7 +159,7 @@
 
                                 echo '
                                     <div class="review mt-4">
-                                        <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
+                                        <div class="d-flex flex-row comment-user"><img class="rounded" src="'.$review["path"].'" width="40">
                                             <div class="ml-2">
                                                 <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.$review["name"].'</span><span class="dot"></span><span class="date">'.date_format(new DateTime($review['date']), 'd M Y').'</span></div>
                                                 <div class="rating">';
