@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Purrfect Coffee - Profile Pic</title>
+    <title>Purrfect Coffee</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script
@@ -26,10 +26,11 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <!--link href="assets/aos/aos.css" rel="stylesheet"-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <?php
+       $page = 'menu';
        require 'header1.php';
     ?>
     <section class="page-section">
@@ -37,8 +38,36 @@
       <section id="menu" class="menu section-bg">
         <div class="container" data-aos="fade-up">
           <div class="section-title">
-            <h2>Profile Pic</h2>
-            <p>Choose your avatar between these cuties!</p>
+            <h2>Menu</h2>
+            <p>Check Our Tasty Menu</p>
+          </div>
+
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+              <ul id="menu-flters">
+                <li data-filter="*" class="filter-active">All</li>
+                <?php
+                  require '../utils/connect_db.php';
+                  $sql = "SELECT filterName FROM menufilter";
+                  $result = $connection->query($sql);
+                  
+                  if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()){
+                      echo'
+                      <li data-filter=".filter-'.$row["filterName"].'">'.$row["filterName"].'</li>
+                      ';
+                    }
+              
+    
+                  } 
+                  else {
+                      header("Location: ./index.php");
+                      exit();
+                  }
+    
+                ?>
+              </ul>
+            </div>
           </div>
 
           <div
@@ -47,47 +76,30 @@
             data-aos-delay="200"
           >
             <?php
-              if(isset($_GET['error'])){
-                  if($_GET['error']=='emptyFields'){
-                      echo'<div class="alert alert-danger" role="alert">
-                              Please fill in all fields?
-                          </div>';
-                  }
-                  if($_GET['error']=='unexpectedError'){
-                      echo'<div class="alert alert-danger" role="alert">
-                              An unexpected error occured, please try again.
-                          </div>';
-                  }
-              }
-              require 'utils/connect_db.php';
-              $sql = "SELECT * FROM avatar";
+              $sql = "SELECT dish, ingredients, price, filter, picture FROM menuItems";
               $result = $connection->query($sql);
-              echo'<form action="utils/choose_profile_pic.php" method="post">';
+              
               if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()){
                   echo'
-                  <div class="col-lg-3 menu-item">
-                      <input type="radio" id="'.$row["id"].'" name="profile_pic" value="'.$row["id"].'">
-                      <label for="'.$row["id"].'"><img src="'.$row["path"].'" class="profile-img" alt=""></label><br>
+                  <div class="col-lg-6 menu-item filter-'.$row["filter"].'">
+                    <img
+                      src="'.$row["picture"].'"
+                      class="menu-img"
+                      alt=""
+                    />
+                    <div class="menu-content"><a>'.$row["dish"].'</a> <span>$'.$row["price"].'</span></div>
+                    <div class="menu-ingredients">'.$row["ingredients"].'</div>
                   </div>
                   ';
                 }
-                echo'
-          </div>
-                  <div class="row">
-                    <div class="col-sm-6">
-                    <input type="submit" name="submit" class="btn btn-primary btn-block" value="Choose this picture!">
-                    </div>
-                  </div>
-                </form>
-                ';
           
               $connection->close();
 
               } 
               else {
                   $connection->close();
-                  header("Location: ../index.php");
+                  header("Location: ./index.php");
                   exit();
               }
 
@@ -102,9 +114,9 @@
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/aos/aos.js"></script>
+    <script src="../assets/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../assets/aos/aos.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
   </body>
 </html>

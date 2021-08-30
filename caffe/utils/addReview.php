@@ -39,16 +39,16 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../product.php?id=".$_POST['productid']);
+    header("Location: ../html/product.php?id=".$_POST['productid']);
     exit();
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../leaveReview.php?error=emptyFields".'&id='.$_POST['productid']);
+        header("Location: ../html/leaveReview.php?error=emptyFields".'&id='.$_POST['productid']);
         exit();
     }
     else{
-        header("Location: ../leaveReview.php?error=".'&id='.$_POST['productid']);
+        header("Location: ../html/leaveReview.php?error=".'&id='.$_POST['productid']);
         exit();
     }
 }

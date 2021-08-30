@@ -26,7 +26,7 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <!--link href="assets/aos/aos.css" rel="stylesheet"-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <?php
@@ -64,7 +64,7 @@
                         <ul id="store-flters">
                             <li data-filter="*" class="filter-active">All</li>
                             <?php
-                                require 'utils/connect_db.php';
+                                require '../utils/connect_db.php';
                                 $sql = "SELECT name FROM productsCategory";
                                 $result = $connection->query($sql);
                                 
@@ -95,7 +95,7 @@
                     $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id";
                     if(isset($_GET['searchbar'])){
                         echo '<h5 class="pb-3 mb-4 font-italic" style="color:white;">
-                        I risultati per \''.htmlspecialchars($_GET['searchbar'])."' sono <a href=\"store.php\"><i class=\"fas fa-times-circle\"></i></a> :</h5>"; 
+                        Results for \''.htmlspecialchars($_GET['searchbar'])."' are <a href=\"store.php\"><i class=\"fas fa-times-circle\"></i></a> :</h5>"; 
                         $search = $connection -> real_escape_string($_GET['searchbar']);
                         $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id WHERE p.name LIKE '%$search%' OR p.description LIKE '%$search%'";
                     }
@@ -143,9 +143,9 @@
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/aos/aos.js"></script>
+    <script src="../assets/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../assets/aos/aos.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
   </body>
 </html>

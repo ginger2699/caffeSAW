@@ -36,30 +36,30 @@ try {
 
         array_push($_SESSION['cart'],$product);
 
-        header("Location: ../product.php?id=".$_POST['productid']."&success=insert");
+        header("Location: ../html/product.php?id=".$_POST['productid']."&success=insert");
         exit();
 
     } else {
 
-        header("Location: ../product.php?id=".$_POST['productid']."&success=update");
+        header("Location: ../html/product.php?id=".$_POST['productid']."&success=update");
         exit();
     }
 
 } catch(Exception $e) {
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../product.php?id=".$_POST['productid']."&error=emptyFields");
+        header("Location: ../html/product.php?id=".$_POST['productid']."&error=emptyFields");
         exit();
     }
     else if ($e->getMessage()==='mustLogin') {
-        header("Location: ../product.php?id=".$_POST['productid']."&error=mustLogin");
+        header("Location: ../html/product.php?id=".$_POST['productid']."&error=mustLogin");
         exit();
     }
     else if ($e->getMessage()==='invalidSubmit') {
-        header("Location: ../product.php?id=".$_POST['productid']."&error=invalidSubmit");
+        header("Location: ../html/product.php?id=".$_POST['productid']."&error=invalidSubmit");
         exit();
     }
     else {
-        header("Location: ../product.php?id=".$_POST['productid']."&error=unexpectedError");
+        header("Location: ../html/product.php?id=".$_POST['productid']."&error=unexpectedError");
         exit();
     }
 }

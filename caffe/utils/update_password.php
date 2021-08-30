@@ -76,23 +76,22 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../login.php?success=updated");
+    header("Location: ../html/login.php?success=updated");
     exit();
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../update_password.php?error=emptyFields");
+        header("Location: ../html/update_password.php?error=emptyFields");
         exit();
 
     }
     if ($e->getMessage()==='invalidCredentials') {
-        header("Location: ../update_password.php?error=invalidCredentials");
+        header("Location: ../html/update_password.php?error=invalidCredentials");
         exit();
 
     }
     else{
-        //header("Location: ../reset_password.php?error=unexpectedError");
-        header("Location: ../update_password.php?error=".$e->getMessage());
+        header("Location: ../html/update_password.php?error=".$e->getMessage());
         exit();
     }
 }

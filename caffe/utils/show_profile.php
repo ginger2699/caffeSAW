@@ -1,3 +1,3 @@
 <?php
-require '../show_profile.php';
+require '../html/show_profile.php';
 ?>

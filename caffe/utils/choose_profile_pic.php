@@ -36,16 +36,16 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../show_profile.php?success=profile");
+    header("Location: ../html/show_profile.php?success=profile");
     exit();
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../choose_profile_pic.php?error=emptyFields");
+        header("Location: ../html/choose_profile_pic.php?error=emptyFields");
         exit();
     }
     else{
-        header("Location: ../choose_profile_pic.php?error=unexpectedError");
+        header("Location: ../html/choose_profile_pic.php?error=unexpectedError");
         exit();
     }
 }

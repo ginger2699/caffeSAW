@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body>
        <?php
@@ -50,7 +50,7 @@
                                                 <span>Select the number of stars and leave a comment(optional)!</span>
                                             </div>
                                             <div class="product-actions-container">
-                                                <form action="utils/addReview.php" method="post">
+                                                <form action="../utils/addReview.php" method="post">
                                                     <div class="product-actions-container"> 
                                                         <input name="productid" type="number" value="'.$_GET['id'].'" style="display: none;">
                                                         <div class="text-area-product">
@@ -96,6 +96,6 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="../js/scripts.js"></script>
     </body>
 </html>

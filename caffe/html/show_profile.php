@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body>
        <?php
@@ -27,7 +27,7 @@
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
                     <?php 
-                      require 'utils/connect_db.php';
+                      require '../utils/connect_db.php';
                       $sql = "SELECT avatar.path FROM usersInfo JOIN avatar ON usersInfo.path=avatar.id  WHERE usersInfo.id =".$_SESSION['userId'];
                       $result = $connection->query($sql);
                       
@@ -38,7 +38,7 @@
                       ';
                       }                        
                       else {
-                        header("Location: ../index.php");
+                        header("Location: ./index.php");
                         exit();
                       }
                     ?>
@@ -113,7 +113,7 @@
                         } 
                         else {
                             $connection->close();
-                            header("Location: ../login.php");
+                            header("Location: ./login.php");
                             exit();
                           }
                     ?>
@@ -148,7 +148,7 @@
                                         </div>';
                                 }
                             }  
-                            require 'utils/connect_db.php';
+                            require '../utils/connect_db.php';
                             $sql = "SELECT productsreview.id, productsreview.stars, productsreview.review, productsreview.date, product.picture, product.name FROM productsreview 
                             JOIN product ON productsreview.product=product.id WHERE user =".$_SESSION['userId']." LIMIT ".$limit;
                             $result = $connection->query($sql); 
@@ -175,7 +175,7 @@
                                     <div class="mt-2">
                                         <p class="comment-text">'.htmlspecialchars($row['review']).'</p>
                                     </div>
-                                      <a class="trashcanicon" href="utils/delete_review.php?id='.$row["id"].'"><i class="fas fa-trash"></i></a>
+                                      <a class="trashcanicon" href="../utils/delete_review.php?id='.$row["id"].'"><i class="fas fa-trash"></i></a>
                                     </div>
                                     ';
                                 }
@@ -206,7 +206,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <script src="js/reviews.js"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="../js/reviews.js"></script>
     </body>
 </html>

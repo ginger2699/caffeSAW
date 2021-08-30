@@ -35,18 +35,18 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../show_profile.php?success=yes");
+    header("Location: ../html/show_profile.php?success=yes");
     exit();
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../show_profile.php?error=emptyFields");
+        header("Location: ../html/show_profile.php?error=emptyFields");
         exit();
 
     }
     else{
 
-        header("Location: ../show_profile.php?error=".$e->getMessage());
+        header("Location: ../html/show_profile.php?error=".$e->getMessage());
         exit();
     }
 }

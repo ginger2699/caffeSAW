@@ -61,26 +61,26 @@ try{
         throw new Exception();
     };
     
-    header("Location: ../show_profile.php?success=loggedIn");
+    header("Location: ../html/show_profile.php?success=loggedIn");
     exit();
     
 
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../login.php?error=emptyFields");
+        header("Location: ../html/login.php?error=emptyFields");
         exit();
     }
     if ($e->getMessage()==='invalidSubmit') {
-        header("Location: ../login.php?error=invalidSubmit");
+        header("Location: ../html/login.php?error=invalidSubmit");
         exit();
     }
     if ($e->getMessage()==='invalidCredentials') {
-        header("Location: ../login.php?error=invalidCredentials");
+        header("Location: ../html/login.php?error=invalidCredentials");
         exit();
     }
     else {
-        header("Location: ../login.php?error=unexpectedError");
+        header("Location: ../html/login.php?error=unexpectedError");
         exit();
     }
 }

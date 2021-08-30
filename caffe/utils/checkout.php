@@ -91,7 +91,7 @@ try {
 
         $_SESSION['cart']=array();
 
-        header("Location: ../store.php?success=checkout");
+        header("Location: ../html/store.php?success=checkout");
         exit();
 
 
@@ -102,11 +102,11 @@ try {
 } catch(Exception $e) {
     if ($e->getMessage()==='invalidSubmit') {
         echo $e;
-        header("Location: ../store.php?error=invalidSubmit");
+        header("Location: ../html/store.php?error=invalidSubmit");
     }
     else {
         echo $e;
-        header("Location: ../store.php?error=invalidSubmit");
+        header("Location: ../html/store.php?error=invalidSubmit");
     }
 }
 ?>

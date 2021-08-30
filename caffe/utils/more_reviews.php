@@ -72,7 +72,7 @@ try{
             <p class="comment-text">'.htmlspecialchars($row['review']).'</p>
         </div>';
         if (isset($_SESSION['userId'])&&!isset($_POST['prodId'])){
-            echo'<a class="trashcanicon" href="utils/delete_review.php?id='.$row["id"].'"><i class="fas fa-trash"></i></a>
+            echo'<a class="trashcanicon" href="../utils/delete_review.php?id='.$row["id"].'"><i class="fas fa-trash"></i></a>
             ';
 
         }
@@ -114,8 +114,6 @@ catch (Exception $e){
 
     }
     else{
-        //header("Location: ../reset_password.php?error=unexpectedError");
-        echo $e->getMessage();
         exit();
     }
    /* else {

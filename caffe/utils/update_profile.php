@@ -48,29 +48,29 @@ if(!($connection -> close())){
     throw new Exception();
 }
 
-header("Location: ../show_profile.php?success=yes");
+header("Location: ../html/show_profile.php?success=yes");
 exit();
 
 }
 catch (Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../update_profile.php?error=emptyFields");
+        header("Location: ../html/update_profile.php?error=emptyFields");
         exit();
     }
     if ($e->getMessage()==='invalidSubmit') {
-        header("Location: ../update_profile.php?error=invalidSubmit");
+        header("Location: ../html/update_profile.php?error=invalidSubmit");
         exit();
     }
     if ($e->getMessage()==='prepare') {
-        header("Location: ../update_profile.php?error=prepare");
+        header("Location: ../html/update_profile.php?error=prepare");
         exit();
     }
     if ($e->getMessage()==='invalidCredentials') {
-        header("Location: ../update_profile.php?error=invalidCredentials");
+        header("Location: ../html/update_profile.php?error=invalidCredentials");
         exit();
     }
     else {
-        header("Location: ../update_profile.php?error=unexpectedError");
+        header("Location: ../html/update_profile.php?error=unexpectedError");
         exit();
     }
 }

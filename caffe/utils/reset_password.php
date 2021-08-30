@@ -65,7 +65,7 @@ try{
             throw new Exception("error3");
         }
     
-        $link = "<a href='http://localhost/caffeSAW/caffe/update_password.php?key=".$_POST['email']."&amp;token=".$token."'>Click To Reset password</a>";
+        $link = "<a href='http://localhost/caffeSAW/caffe/html/update_password.php?key=".$_POST['email']."&amp;token=".$token."'>Click To Reset password</a>";
     
         require '../PHPMailer/Exception.php';
         require '../PHPMailer/PHPMailer.php';
@@ -109,23 +109,22 @@ try{
         throw new Exception();
     };
 
-    header("Location: ../reset_password.php?success=yes");
+    header("Location: ../html/reset_password.php?success=yes");
     exit();
 }
 catch(Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../reset_password.php?error=emptyFields");
+        header("Location: ../html/reset_password.php?error=emptyFields");
         exit();
 
     }
     if ($e->getMessage()==='invalidCredentials') {
-        header("Location: ../reset_password.php?error=invalidCredentials");
+        header("Location: ../html/reset_password.php?error=invalidCredentials");
         exit();
 
     }
     else{
-        header("Location: ../reset_password.php?error=unexpectedError");
-        //header("Location: ../reset_password.php?error=".$e->getMessage());
+        header("Location: ../html/reset_password.php?error=unexpectedError");
         exit();
     }
 }

@@ -26,7 +26,7 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <!--link href="assets/aos/aos.css" rel="stylesheet"-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <?php
@@ -68,7 +68,7 @@
                     }
                 }
 
-                require 'utils/connect_db.php';
+                require '../utils/connect_db.php';
     
                 // Create a prepared statement
                 if(!($stmt = $connection -> stmt_init())){
@@ -119,7 +119,7 @@
                                             <p>'.$product["description"].'</p>
                                         </div>
                                         <div class="product-actions-container">
-                                            <form action="utils/addToCart.php" method="post">
+                                            <form action="../utils/addToCart.php" method="post">
                                                 <div class="product-actions-container"> 
                                                     <input name="productid" type="number" value="'.$product["id"].'" style="display: none;">
                                                     <input name="name" type="text" value="'.$product["name"].'" style="display: none;">
@@ -137,8 +137,6 @@
                                     </div>
                                 </div>
                         ';
-
-                        //TODO : AGGIUNGERE IMMAGINE UTENTE
                         $limit=5;
                         $queryReviews = 'SELECT p.id, review, stars, date, u.name, a.path FROM productsReview as p JOIN usersInfo AS u ON user = u.id JOIN avatar AS a ON u.path=a.id WHERE product = '.$product["id"].' LIMIT '.$limit;
                         $resultReviews = $connection->query($queryReviews);
@@ -154,8 +152,6 @@
                             ';
 
                             while($review = $resultReviews->fetch_assoc()){ 
-
-                                //TODO : AGGIUNGERE IMMAGINE UTENTE
 
                                 echo '
                                     <div class="review mt-4">
@@ -181,7 +177,7 @@
                             echo '
                                     <div id="newReviews">
                                         <input id="productIdbButtonProd" type="number" value="'.$product["id"].'" style="display: none;">
-                                        <button id ="reviewButtonProd" type="submit" value = "1" class="btn btn-primary btn-l">Vedi altre recensioni</button>
+                                        <button id ="reviewButtonProd" type="submit" value = "1" class="btn btn-primary btn-l">Show more reviews</button>
                                         <br><br>  
                                     </div>
                                 </div>
@@ -209,11 +205,7 @@
                 };
 
             } else {
-                //TODO : verificare, c'è bisognodi header?
-                //header("Location: index.php");
-                echo'<div class="alert alert-danger" role="alert">
-                    An unexpected error occured, please try again.
-                </div>';
+                header("Location: store.php");
                 exit();
             }
             
@@ -226,10 +218,10 @@
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/aos/aos.js"></script>
+    <script src="../assets/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../assets/aos/aos.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <script src="js/reviews.js"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="../js/reviews.js"></script>
   </body>
 </html>

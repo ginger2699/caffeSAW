@@ -54,25 +54,25 @@ if(!($connection -> close())){
     throw new Exception();
 }
 
-header("Location: ../login.php?success=yes");
+header("Location: ../html/login.php?success=yes");
 exit();
 
 }
 catch (Exception $e){
     if ($e->getMessage()==='emptyFields') {
-        header("Location: ../registration.php?error=emptyFields");
+        header("Location: ../html/registration.php?error=emptyFields");
         exit();
     }
     if ($e->getMessage()==='invalidSubmit') {
-        header("Location: ../registration.php?error=invalidSubmit");
+        header("Location: ../html/registration.php?error=invalidSubmit");
         exit();
     }
     if ($e->getMessage()==='invalidPassword') {
-        header("Location: ../registration.php?error=invalidPassword");
+        header("Location: ../html/registration.php?error=invalidPassword");
         exit();
     }
     else {
-        header("Location: ../registration.php?error=unexpectedError");
+        header("Location: ../html/registration.php?error=unexpectedError");
         exit();
     }
 }
