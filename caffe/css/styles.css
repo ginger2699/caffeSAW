@@ -10600,6 +10600,11 @@ p {
   font-weight: 600;
 }
 
+.cart-element-info .delete {
+  color: #e6a756;
+  cursor: pointer;
+}
+
 .cart-element-quantity {
   line-height: 40px; 
   text-align: center; 
@@ -10611,11 +10616,11 @@ p {
   max-width:80px; border-radius: 20px
 }
 
-.cart-element-info span {
+.cart-element-info .name span {
   font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.cart-total-info span {
+.cart-total-info .price span {
   font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 

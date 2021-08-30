@@ -74,6 +74,22 @@
     </div>
 </nav>
 <!-- Cart -->
+<script type="text/javascript">
+    function deleteFromCart(id) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if(this.readyState == 4) {
+                if (this.status != 200) {
+                    document.getElementById("alerts").innerHTML = '<div class="alert alert-danger" role="alert">An unexpected error occured, please try again.</div>';
+                } else {
+                    location.reload();
+                }
+            }
+        };
+        xmlhttp.open("POST", "utils/removeFromCart.php?productid=" + id, true);
+        xmlhttp.send();
+    }
+</script>
 <?php 
     if(isset($_SESSION['userId'])) {
     
@@ -100,7 +116,9 @@
                                     <div class="box cart-element-info">
                                         <div class="name"><span>'.$cart['name'].'</span></div>
                                         <div class="price"><span>$'.number_format($productprice, 2, '.', '').'</span></div>
-                                        <div><a href="#">REMOVE</a></div>
+                                        <div class="delete">
+                                            <span onclick="deleteFromCart('.$cart['id'].')">REMOVE</span>                 
+                                        </div>
                                     </div>
                                     <div class="box cart-element-quantity">
                                         <span>'.$cart['quantity'].'</span>
@@ -139,3 +157,4 @@
 
     } 
 ?>
+<div id="alerts"></div>
