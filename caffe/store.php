@@ -38,6 +38,21 @@
       <!-- ======= Store Section ======= -->
 
         <section id="store" class="store section-bg">
+
+            <?php
+                if(isset($_GET['success'])) {
+                    echo'<div class="alert alert-success" role="alert">
+                        Thank you for your purchase!
+                    </div>';
+                }
+                if(isset($_GET['error'])) {
+                    echo'<div class="alert alert-danger" role="alert">
+                        An unexpected error occured, please try again.
+                    </div>';
+                }
+            ?>
+
+
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
                     <h2>Store</h2>
