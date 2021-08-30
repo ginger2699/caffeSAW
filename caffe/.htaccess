@@ -1,0 +1,14 @@
+# Deny access to .htaccess
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+# Disable directory browsing 
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /html/
+
+ErrorDocument 403 https://localhost/caffeSAW/caffe/html/
+ErrorDocument 404 https://localhost/caffeSAW/caffe/html/
