@@ -9,7 +9,7 @@ require 'utils.php';
 /****************************************/
 /* replace $baseurl with your directory */
 /****************************************/
-$baseurl =  'https://localhost/caffe/utils';
+$baseurl =  'http://localhost/caffeSAW/caffe/utils';
 
 echo "[+] Testing Registration - Login - Show Profile\n";
 

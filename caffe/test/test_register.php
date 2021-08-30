@@ -6,9 +6,8 @@ function register($email, $password, $first_name, $last_name, $baseurl) {
     $first_name = urlencode($first_name);
     $last_name = urlencode($last_name);
     $password = urlencode($password);
-    
+
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $url = "$baseurl/registration.php";
 
     $cookieFile = "cookies";
@@ -33,7 +32,7 @@ function register($email, $password, $first_name, $last_name, $baseurl) {
     $result = curl_exec($ch);
 
     /* Delete comment below to see what is returned */
-    echo $result;
+    //echo $result;
 
     if (curl_errno($ch)) {
         echo 'Error:' . curl_error($ch);

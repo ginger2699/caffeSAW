@@ -3,7 +3,6 @@
 function show_logged_user($baseurl) {
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $url = "$baseurl/show_profile.php";
 
     $cookieFile = "cookies";

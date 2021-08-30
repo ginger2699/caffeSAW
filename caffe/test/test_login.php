@@ -6,7 +6,6 @@ function login($email, $pass, $baseurl) {
     $pass = urlencode($pass);
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $url = "$baseurl/login.php";
 
     $cookieFile = "cookies";
@@ -31,7 +30,7 @@ function login($email, $pass, $baseurl) {
     $result = curl_exec($ch);
 
     /* Delete comment below to see what is returned */
-    echo $result;
+    //echo $result;
 
     if (curl_errno($ch)) {
         echo 'Error:' . curl_error($ch);
