@@ -86,7 +86,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">';
                             
-    if(count($_SESSION['cart']) > 0) {
+    if((isset($_SESSION['cart']))&&(count($_SESSION['cart']) > 0)) {
         $subtotal = 0;
 
         foreach($_SESSION['cart'] as $cart) {

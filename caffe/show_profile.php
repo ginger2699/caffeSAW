@@ -26,7 +26,22 @@
               <div class="card profileCard">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img class="resize" src="assets/img/menu/lobster-bisque.jpg" alt="Insert your profile pic">
+                    <?php 
+                      require 'utils/connect_db.php';
+                      $sql = "SELECT avatar.path FROM usersInfo JOIN avatar ON usersInfo.path=avatar.id  WHERE usersInfo.id =".$_SESSION['userId'];
+                      $result = $connection->query($sql);
+                      
+                      if ($result->num_rows > 0) {
+                        // output data of each row
+                      $row = $result->fetch_assoc();
+                      echo'<img class="resize" src="'.$row["path"].'" alt="Insert your profile pic">
+                      ';
+                      }                        
+                      else {
+                        header("Location: ../index.php");
+                        exit();
+                      }
+                    ?>
                     <a class="trashcanicon" href="choose_profile_pic.php"><i class="fas fa-pencil-alt"></i> Change your profile pic </a>
                   </div>
                 </div>
@@ -47,8 +62,14 @@
                                       </div>';
                               }
                             }
+                            if($_GET['success']=='profile'){
+                              if(isset($_SESSION['userId'])){ 
+                                      echo'<div class="alert alert-success" role="alert">
+                                          Profile pic updated!
+                                      </div>';
+                              }
+                            }
                         }
-                        require 'utils/connect_db.php';
                         $sql = "SELECT name, surname, email, phonenumber FROM usersInfo WHERE id =".$_SESSION['userId'];
                         $result = $connection->query($sql);
                         
@@ -93,7 +114,8 @@
                         else {
                             $connection->close();
                             header("Location: ../login.php");
-                            exit();}
+                            exit();
+                          }
                     ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <div class="row">
