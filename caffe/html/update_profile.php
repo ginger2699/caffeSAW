@@ -47,10 +47,10 @@
                         $row = $result->fetch_assoc();
                         echo'
                         <form action="../utils/update_profile.php" method="post">
-                        <h5 class="section-heading-upper"> <input required name="firstname" class="form-control" value="'.$row["name"].'" type="text"> </a></h5>
-                        <h5 class="section-heading-upper"> <input required name="lastname" class="form-control" value="'.$row["surname"].'" type="text"> </a></h5>
-                        <h5 class="section-heading-upper"> <input required name="email" class="form-control" value="'.$row["email"].'" type="text"> </a></h5>
-                        <h5 class="section-heading-upper"> <input required name="phonenumber" class="form-control" value="'.$row["phonenumber"].'" type="text"> </a></h5>
+                        <h5 class="section-heading-upper"> <input required name="firstname" class="form-control" placeholder="Firt Name" value="'.$row["name"].'" type="text"> </a></h5>
+                        <h5 class="section-heading-upper"> <input required name="lastname" class="form-control" placeholder="Lat Name" value="'.$row["surname"].'" type="text"> </a></h5>
+                        <h5 class="section-heading-upper"> <input required name="email" class="form-control" placeholder="Email" value="'.$row["email"].'" type="text"> </a></h5>
+                        <h5 class="section-heading-upper"> <input required name="phonenumber" class="form-control" placeholder="Phone Number" value="'.$row["phonenumber"].'" type="text"> </a></h5>
                         <input type="submit" name="submit" class="btn btn-primary btn-block" value="Confirm Info">
                         </form>
                         ';
