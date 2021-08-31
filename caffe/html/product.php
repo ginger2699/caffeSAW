@@ -138,7 +138,7 @@
                                 </div>
                         ';
                         $limit=5;
-                        $queryReviews = 'SELECT p.id, review, stars, date, u.name, a.path FROM productsReview as p JOIN usersinfo AS u ON user = u.id JOIN avatar AS a ON u.path=a.id WHERE product = '.$product["id"].' LIMIT '.$limit;
+                        $queryReviews = 'SELECT p.id, review, stars, date, u.name, a.path FROM productsreview as p JOIN usersinfo AS u ON user = u.id JOIN avatar AS a ON u.path=a.id WHERE product = '.$product["id"].' LIMIT '.$limit;
                         $resultReviews = $connection->query($queryReviews);
 
                         if ($resultReviews !== false && $resultReviews->num_rows > 0) { 
@@ -157,7 +157,7 @@
                                     <div class="review mt-4">
                                         <div class="d-flex flex-row comment-user"><img class="rounded" src="'.htmlspecialchars($review["path"]).'" width="40">
                                             <div class="ml-2">
-                                                <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.$review["name"].'</span><span class="dot"></span><span class="date">'.date_format(new DateTime($review['date']), 'd M Y').'</span></div>
+                                                <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.htmlspecialchars($review["name"]).'</span><span class="dot"></span><span class="date">'.date_format(new DateTime($review['date']), 'd M Y').'</span></div>
                                                 <div class="rating">';
 
                                                 for ($i = 1; $i <= $review["stars"]; $i++) {
@@ -168,7 +168,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-2">
-                                            <p class="comment-text">'.$review["review"].'</p>
+                                            <p class="comment-text">'.htmlspecialchars($review["review"]).'</p>
                                         </div>
                                     </div>
                                 ';

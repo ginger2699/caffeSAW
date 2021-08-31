@@ -20,11 +20,11 @@ try{
     $limit = (int)$limit;
     $offsetR=(int)$_POST['offset'];
     $offsetR=$offsetR*$limit;
-    $sql = "SELECT productsreview.id, productsreview.stars, productsreview.review, productsreview.date, product.name FROM productsreview 
+    $sql = "SELECT productsreview.id, productsreview.stars, productsreview.review, productsreview.date, product.name, product.picture FROM productsreview 
     JOIN product ON productsreview.product=product.id WHERE user =? LIMIT ?,?";
 
     if(isset($_POST['prodId'])){
-        $sql  = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersinfo AS u ON user = u.id WHERE product = ? LIMIT ?,?';
+        $sql  = 'SELECT p.id, review, stars, date, u.name, a.path FROM productsreview as p JOIN usersinfo AS u ON user = u.id JOIN avatar AS a ON u.path=a.id WHERE product = ? LIMIT ?,?';
     }
 
     if(!($stmt -> prepare($sql))){
@@ -61,10 +61,16 @@ try{
 
     while($row = $results -> fetch_assoc()){
         echo'
-        <div class="review mt-4">
-        <div class="d-flex flex-row comment-user"><img class="rounded" src="https://i.imgur.com/xxJl1D7.jpg" width="40">
+        <div class="review mt-4">';
+        if(isset($_POST['prodId'])){
+            echo '<div class="d-flex flex-row comment-user"><img class="rounded" src="'.htmlspecialchars($row["path"]).'" width="40">';     
+        }
+        else{
+            echo '<div class="d-flex flex-row comment-user"><img class="rounded" src="'.htmlspecialchars($row["picture"]).'" width="40">';
+        }
+        echo'
             <div class="ml-2">
-                <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.$row['name'].'</span><span>'.str_repeat('&nbsp;', 5).'</span><span class="dot"></span><span class="date">'.$row['date'].'</span></div>
+                <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.htmlspecialchars($row['name']).'</span><span>'.str_repeat('&nbsp;', 5).'</span><span class="dot"></span><span class="date">'.$row['date'].'</span></div>
                 <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
             </div>
         </div>

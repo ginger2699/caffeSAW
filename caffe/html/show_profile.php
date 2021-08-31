@@ -82,7 +82,7 @@
                             <div class="col-sm-6">
                               <h6 class="mb-0">First Name : </h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">'.$row["name"].'</div>
+                            <div class="col-sm-9 text-secondary">'.htmlspecialchars($row["name"]).'</div>
                           </div>
                           </li>
                           <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -90,7 +90,7 @@
                             <div class="col-sm-6">
                               <h6 class="mb-0">Last Name : </h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">'.$row["surname"].'</div>
+                            <div class="col-sm-9 text-secondary">'.htmlspecialchars($row["surname"]).'</div>
                           </div>
                           </li>
                           <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -98,7 +98,7 @@
                             <div class="col-sm-6">
                               <h6 class="mb-0">Email : </h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">'.$row["email"].'</div>
+                            <div class="col-sm-9 text-secondary">'.htmlspecialchars($row["email"]).'</div>
                           </div>
                           </li>
                           <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -106,7 +106,7 @@
                             <div class="col-sm-6">
                               <h6 class="mb-0">Phone number : </h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">'.$row["phonenumber"].'</div>
+                            <div class="col-sm-9 text-secondary">'.htmlspecialchars($row["phonenumber"]).'</div>
                           </div>
                           </li>';
                         $connection->close();
