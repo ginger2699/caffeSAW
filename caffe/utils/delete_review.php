@@ -1,7 +1,7 @@
 <?php
 try{
     session_start();
-    if(!isset($_GET['id'])||!isset($_SESSION['userId'])){
+    if((!isset($_GET['id'])||!is_numeric($_GET['id']))||!isset($_SESSION['userId'])){
         throw new Exception('emptyFields');
     }
     include "connect_db.php";
