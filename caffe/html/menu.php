@@ -50,19 +50,22 @@
                   require '../utils/connect_db.php';
                   $sql = "SELECT filterName FROM menufilter";
                   $result = $connection->query($sql);
-                  
-                  if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()){
-                      echo'
-                      <li data-filter=".filter-'.$row["filterName"].'">'.$row["filterName"].'</li>
-                      ';
+                  if($result){
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()){
+                        echo'
+                        <li data-filter=".filter-'.$row["filterName"].'">'.$row["filterName"].'</li>
+                        ';
+                      }
+                
+      
                     }
-              
-    
+                    else{
+                      echo'<h6><p class="mb-0">The filters are not available at this time, please try again later.</p></h6>';
+                    }
                   } 
                   else {
-                      header("Location: index.php");
-                      exit();
+                    echo'<h6><p class="mb-0">The filters are not available at this time, please try again later.</p></h6>';
                   }
     
                 ?>
@@ -76,26 +79,30 @@
             data-aos-delay="200"
           >
             <?php
-              $sql = "SELECT dish, ingredients, price, filter, picture FROM menuItems";
+              $sql = "SELECT dish, ingredients, price, filter, picture FROM menuitems";
               $result = $connection->query($sql);
-              
-              if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()){
-                  echo'
-                  <div class="col-lg-6 menu-item filter-'.$row["filter"].'">
-                    <img
-                      src="'.htmlspecialchars($row["picture"]).'"
-                      class="menu-img"
-                      alt=""
-                    />
-                    <div class="menu-content"><a>'.$row["dish"].'</a> <span>$'.$row["price"].'</span></div>
-                    <div class="menu-ingredients">'.$row["ingredients"].'</div>
-                  </div>
-                  ';
+              if($result){
+                if ($result->num_rows > 0) {
+                  while($row = $result->fetch_assoc()){
+                    echo'
+                    <div class="col-lg-6 menu-item filter-'.$row["filter"].'">
+                      <img
+                        src="'.htmlspecialchars($row["picture"]).'"
+                        class="menu-img"
+                        alt=""
+                      />
+                      <div class="menu-content"><a>'.$row["dish"].'</a> <span>$'.$row["price"].'</span></div>
+                      <div class="menu-ingredients">'.$row["ingredients"].'</div>
+                    </div>
+                    ';
+                  }
+            
+                $connection->close();
                 }
-          
-              $connection->close();
-
+                else {
+                  $connection->close();
+                  echo'<h5><p class="mb-0">The menu is not available at this time, please try again later.</p></h5>';
+              }
               } 
               else {
                   $connection->close();

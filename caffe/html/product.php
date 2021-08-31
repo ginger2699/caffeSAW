@@ -76,7 +76,7 @@
                 }
 
                 
-                if(!($stmt -> prepare("SELECT p.id, p.name, description, price, c.name AS category, picture FROM product AS p JOIN productsCategory AS c ON p.category = c.id WHERE p.id = ?"))){
+                if(!($stmt -> prepare("SELECT p.id, p.name, description, price, c.name AS category, picture FROM product AS p JOIN productscategory AS c ON p.category = c.id WHERE p.id = ?"))){
                     throw new Exception();
                 }
                 

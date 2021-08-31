@@ -65,7 +65,7 @@
                             <li data-filter="*" class="filter-active">All</li>
                             <?php
                                 require '../utils/connect_db.php';
-                                $sql = "SELECT name FROM productsCategory";
+                                $sql = "SELECT name FROM productscategory";
                                 $result = $connection->query($sql);
                                 
                                 if ($result->num_rows > 0) {
@@ -92,12 +92,12 @@
                 data-aos-delay="200"
             >
                 <?php
-                    $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id";
+                    $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productscategory AS c ON p.category = c.id";
                     if(isset($_GET['searchbar'])){
                         echo '<h5 class="pb-3 mb-4 font-italic" style="color:white;">
                         Results for \''.htmlspecialchars($_GET['searchbar'])."' are <a href=\"store.php\"><i class=\"fas fa-times-circle\"></i></a> :</h5>"; 
                         $search = $connection -> real_escape_string($_GET['searchbar']);
-                        $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productsCategory AS c ON p.category = c.id WHERE p.name LIKE '%$search%' OR p.description LIKE '%$search%'";
+                        $sql = "SELECT p.id, p.name, category, description, price, c.name AS category, picture FROM product as p JOIN productscategory AS c ON p.category = c.id WHERE p.name LIKE '%$search%' OR p.description LIKE '%$search%'";
                     }
                     $result = $connection->query($sql);
                     if(!$result){
