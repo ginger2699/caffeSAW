@@ -111,7 +111,7 @@
             echo '
                                 <div class="cart-element">
                                     <div class="box">
-                                        <img class="cart-img" src="'.$cart['picture'].'" class="product-img" alt=""/>
+                                        <img class="cart-img" src="'.htmlspecialchars($cart['picture']).'" class="product-img" alt=""/>
                                     </div>
                                     <div class="box cart-element-info">
                                         <div class="name"><span>'.$cart['name'].'</span></div>

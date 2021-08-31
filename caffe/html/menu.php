@@ -84,7 +84,7 @@
                   echo'
                   <div class="col-lg-6 menu-item filter-'.$row["filter"].'">
                     <img
-                      src="'.$row["picture"].'"
+                      src="'.htmlspecialchars($row["picture"]).'"
                       class="menu-img"
                       alt=""
                     />

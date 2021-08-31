@@ -34,7 +34,7 @@
                       if ($result->num_rows > 0) {
                         // output data of each row
                       $row = $result->fetch_assoc();
-                      echo'<img class="resize" src="'.$row["path"].'" alt="Insert your profile pic">
+                      echo'<img class="resize" src="'.htmlspecialchars($row["path"]).'" alt="Insert your profile pic">
                       ';
                       }                        
                       else {
@@ -160,7 +160,7 @@
                                 while($row = $result->fetch_assoc()){
                                     echo'
                                     <div class="review mt-4">
-                                    <div class="d-flex flex-row comment-user"><img class="rounded" src="'.$row['picture'].'" width="40">
+                                    <div class="d-flex flex-row comment-user"><img class="rounded" src="'.htmlspecialchars($row['picture']).'" width="40">
                                         <div class="ml-2">
                                             <div class="d-flex flex-row align-items-center"><span class="name font-weight-bold">'.$row['name'].'</span><span>'.str_repeat('&nbsp;', 5).'</span><span class="dot"></span><span class="date">'.$row['date'].'</span></div>
                                             <div class="rating">';

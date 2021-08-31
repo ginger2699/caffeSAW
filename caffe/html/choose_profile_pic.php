@@ -67,8 +67,8 @@
                 while($row = $result->fetch_assoc()){
                   echo'
                   <div class="col-lg-3 menu-item">
-                      <input type="radio" id="'.$row["id"].'" name="profile_pic" value="'.$row["id"].'">
-                      <label for="'.$row["id"].'"><img src="'.$row["path"].'" class="profile-img" alt=""></label><br>
+                      <input type="radio" id="'.$row["id"].'" name="profile_pic" value="'.htmlspecialchars($row["id"]).'">
+                      <label for="'.$row["id"].'"><img src="'.htmlspecialchars($row["path"]).'" class="profile-img" alt=""></label><br>
                   </div>
                   ';
                 }

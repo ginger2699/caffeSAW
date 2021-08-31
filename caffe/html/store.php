@@ -111,7 +111,7 @@
                             <div class="store-card">
                                 <div class="store-img-container">
                                     <img
-                                        src="'.$row["picture"].'"
+                                        src="'.htmlspecialchars($row["picture"]).'"
                                         class="store-img"
                                         alt=""
                                     />
