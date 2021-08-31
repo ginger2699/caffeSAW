@@ -28,7 +28,7 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <?php 
                       require '../utils/connect_db.php';
-                      $sql = "SELECT avatar.path FROM usersInfo JOIN avatar ON usersInfo.path=avatar.id  WHERE usersInfo.id =".$_SESSION['userId'];
+                      $sql = "SELECT avatar.path FROM usersinfo JOIN avatar ON usersinfo.path=avatar.id  WHERE usersinfo.id =".$_SESSION['userId'];
                       $result = $connection->query($sql);
                       
                       if ($result->num_rows > 0) {
@@ -70,7 +70,7 @@
                               }
                             }
                         }
-                        $sql = "SELECT name, surname, email, phonenumber FROM usersInfo WHERE id =".$_SESSION['userId'];
+                        $sql = "SELECT name, surname, email, phonenumber FROM usersinfo WHERE id =".$_SESSION['userId'];
                         $result = $connection->query($sql);
                         
                         if ($result->num_rows > 0) {

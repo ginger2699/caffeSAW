@@ -15,7 +15,7 @@ try{
     }
 
     
-    if(!($stmt -> prepare("SELECT id, password FROM usersInfo WHERE email = ?"))){
+    if(!($stmt -> prepare("SELECT id, password FROM usersinfo WHERE email = ?"))){
         throw new Exception();
     }
     

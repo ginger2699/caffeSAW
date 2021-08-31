@@ -39,7 +39,7 @@
                             }
                         }  
                         require '../utils/connect_db.php';
-                        $sql = "SELECT name, surname, email, phonenumber FROM usersInfo WHERE id =".$_SESSION['userId'];
+                        $sql = "SELECT name, surname, email, phonenumber FROM usersinfo WHERE id =".$_SESSION['userId'];
                         $result = $connection->query($sql);
                         
                         if ($result->num_rows > 0) {

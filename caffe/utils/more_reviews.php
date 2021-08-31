@@ -24,7 +24,7 @@ try{
     JOIN product ON productsreview.product=product.id WHERE user =? LIMIT ?,?";
 
     if(isset($_POST['prodId'])){
-        $sql  = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersInfo AS u ON user = u.id WHERE product = ? LIMIT ?,?';
+        $sql  = 'SELECT p.id, review, stars, date, u.name FROM productsReview as p JOIN usersinfo AS u ON user = u.id WHERE product = ? LIMIT ?,?';
     }
 
     if(!($stmt -> prepare($sql))){

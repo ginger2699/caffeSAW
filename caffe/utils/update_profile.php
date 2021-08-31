@@ -24,7 +24,7 @@ if(!$stmt){
     throw new Exception();
 }
 
-if(!($stmt -> prepare("UPDATE usersInfo SET name = ?, surname = ?, email = ?, phonenumber = ? WHERE id = ?"))){
+if(!($stmt -> prepare("UPDATE usersinfo SET name = ?, surname = ?, email = ?, phonenumber = ? WHERE id = ?"))){
     throw new Exception('prepare');
 }
 

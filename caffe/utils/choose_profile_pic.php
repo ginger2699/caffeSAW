@@ -12,7 +12,7 @@ try{
         throw new Exception();
     }
 
-    if(!($stmt -> prepare("UPDATE usersInfo SET path = ? WHERE id = ?"))){
+    if(!($stmt -> prepare("UPDATE usersinfo SET path = ? WHERE id = ?"))){
         throw new Exception("error1");
     }
     

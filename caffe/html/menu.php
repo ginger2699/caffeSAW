@@ -61,7 +61,7 @@
     
                   } 
                   else {
-                      header("Location: ./index.php");
+                      header("Location: index.php");
                       exit();
                   }
     
@@ -99,7 +99,7 @@
               } 
               else {
                   $connection->close();
-                  header("Location: ./index.php");
+                  header("Location: index.php");
                   exit();
               }
 

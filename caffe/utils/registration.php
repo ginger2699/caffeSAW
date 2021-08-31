@@ -28,7 +28,7 @@ if(!$stmt){
     throw new Exception('1');
 }
 
-if(!($stmt -> prepare("INSERT INTO usersInfo VALUES (DEFAULT,?,?,?,?,DEFAULT,?)"))){
+if(!($stmt -> prepare("INSERT INTO usersinfo VALUES (DEFAULT,?,?,?,?,DEFAULT,?)"))){
     throw new Exception('2');
 }
 

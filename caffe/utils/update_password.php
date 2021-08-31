@@ -45,7 +45,7 @@ try{
     if($row)
     {
     
-        if(!($stmt -> prepare("UPDATE usersInfo SET password = ? WHERE email = ?"))){
+        if(!($stmt -> prepare("UPDATE usersinfo SET password = ? WHERE email = ?"))){
             throw new Exception("error1");
         }
         $hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);

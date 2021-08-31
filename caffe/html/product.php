@@ -138,7 +138,7 @@
                                 </div>
                         ';
                         $limit=5;
-                        $queryReviews = 'SELECT p.id, review, stars, date, u.name, a.path FROM productsReview as p JOIN usersInfo AS u ON user = u.id JOIN avatar AS a ON u.path=a.id WHERE product = '.$product["id"].' LIMIT '.$limit;
+                        $queryReviews = 'SELECT p.id, review, stars, date, u.name, a.path FROM productsReview as p JOIN usersinfo AS u ON user = u.id JOIN avatar AS a ON u.path=a.id WHERE product = '.$product["id"].' LIMIT '.$limit;
                         $resultReviews = $connection->query($queryReviews);
 
                         if ($resultReviews !== false && $resultReviews->num_rows > 0) { 
