@@ -51,7 +51,7 @@ try{
     
         $expDate = date("Y-m-d",$expFormat);
     
-        if(!($stmt -> prepare("INSERT INTO tokenRecoverPassword VALUES (DEFAULT,?,?,?)"))){
+        if(!($stmt -> prepare("INSERT INTO tokenrecoverpassword VALUES (DEFAULT,?,?,?)"))){
             throw new Exception("error1");
         }
         
