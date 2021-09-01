@@ -65,7 +65,7 @@ try{
             throw new Exception("error3");
         }
     
-        $link = "<a href='http://localhost/caffeSAW/caffe/html/update_password.php?key=".$_POST['email']."&amp;token=".$token."'>Click To Reset password</a>";
+        $link = "<a href='https://webdev19.dibris.unige.it/~S4718958/html/update_password.php?key=".$_POST['email']."&amp;token=".$token."'>Click To Reset password</a>";
     
         require '../PHPMailer/Exception.php';
         require '../PHPMailer/PHPMailer.php';
